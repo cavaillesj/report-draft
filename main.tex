@@ -2,7 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
-
+\usepackage{algorithm}
+\usepackage{algorithmic}
 
 \title{rapport}
 \author{jjycavailles }
@@ -112,13 +113,20 @@ University : INSA Toulouse \footnote{135, Avenue de Rangueil 31077 Toulouse Cede
 
 
 \newpage
-%\addto\captionsfrench{\def\contentsname{}} % pour supprimer le "table des matieres en haut"
+\addcontentsline{toc}{section}{Abstract}
+\section*{Abstract}
+\paragraph{}
+\todo{}
 
+\paragraph{Keywords}
+
+
+
+\newpage
+%\addto\captionsfrench{\def\contentsname{}} % pour supprimer le "table des matieres en haut"
 \paragraph{}
 %\section*{Contents}
-
 \addcontentsline{toc}{section}{Contents}
-
 \tableofcontents
 
 
@@ -130,6 +138,11 @@ University : INSA Toulouse \footnote{135, Avenue de Rangueil 31077 Toulouse Cede
 \addcontentsline{toc}{section}{List of figures}
 \listoffigures
 
+
+\listoftables
+
+\listofalgorithms
+
 \newpage
 \addcontentsline{toc}{section}{Abbreviations /Glossary}
 \todo{use nomenclature packages}
@@ -137,7 +150,10 @@ University : INSA Toulouse \footnote{135, Avenue de Rangueil 31077 Toulouse Cede
 %\listoffigures
 
 
-
+\newpage
+\addcontentsline{toc}{section}{Preface}
+\section*{Preface}
+\todo{why this report, why this internships, why this subjects, ...}
 
 
 \newpage
@@ -205,7 +221,7 @@ Lead by Jose M. Montoya\footnote{\url{http://www.cbtm-moulis.com/m-224-jose-m--m
 In practice, the team focus on several axes : generation of biodiversity and ecosystem services, the human nature interactions, habitat fragmentation and stability of ecological systems.
 
 %% YZ: I guess you should state the axes right here. Otherwise, it is quite hard to follow.
-The first axis focus on trying to understand how biodiversity change will affect ecosystem services. For example, how the loss of a species can affect crop production. However, because ecology and evolution theory are interrelated, the team integrates the role of eco-evolutionary dynamics in the responses of environmental changes. The same work is done for structure, dynamics and function of ecosystem, which are also interconnected \cite{bastazini_loss_2017} \cite{bideault_temperature_2019} \cite{galiana_geographical_2019}.
+The first axis focus on trying to understand how biodiversity change will affect ecosystem services. For example, how the loss of a species can affect crop production. However, because ecology and evolution theory are interrelated, the team integrates the role of eco-evolutionary dynamics in the responses of environmental changes. The same work is done for structure, dynamics and function of ecosystem, which are also interconnected \citep{bastazini_loss_2017} \cite{bideault_temperature_2019} \cite{galiana_geographical_2019}.
 
 
 
@@ -381,11 +397,13 @@ Another assumption is that fire need fuel ($W$) to burn. In other words, when $W
 
 Also, we consider only density biomass and do evaluate the spatial distribution of both density and fire severity \cite{bergeron_natural_2002}.
 
-Same, we consider only one type of forest. Indeed, it have been argued that different type of forest fire could be differentiate (crown fires, light surface fires ... ) \cite{heinselman_1981_fire}.
-% fire severity proportional to the density of $N$ and $\alpha W$
+Same, we consider only one type of forest. Indeed, it have been argued that different type of forest fire could be differentiate (crown fires, light surface fires ... ) \cite{heinselman1981fire}.
+% fire severity proportional to the density of $N$ and $\alpha W$ 
 
 
-\paragraph{}\todo{useful to give value ? (and justify with paper) it is not that simple, it could be a mess ... }\todo{all value at least positive non null, and m lower than max(dn / dt)}
+\paragraph{}
+\todo{useful to give value ? (and justify with paper) it is not that simple, it could be a mess ...}
+\todo{all value at least positive non null, and m lower than max(dn / dt)}
 
 This model used $9$ parameters, 5 for growth therms and 4 for the fire model.
 
@@ -603,6 +621,7 @@ variability = f\frac{\lambda^2}{U}
 \]
 Details in \hyperref[variability_estimation]{appendix}
 
+
 \todo{figure for just this estimation of variability}
 \begin{figure}[h!]
 \centering
@@ -664,42 +683,236 @@ More generally, even if the maximum of the collapse probability is under estimat
 In this study, we focus on two measures : variability and collapse probability. However as details in the introduction, several different notion of \hyperref[stability_litterature]{stability} are established. This different aspect of stability are briefly presented in  \hyperref[stability_others]{appendix}.
 
 
-\subsection{Dynamics cases}
+
+
+\subsection{Classification of dynamical behaviour}
 
 \paragraph{}
-In order to better understand the dynamics of the system, we distinguish different cases (and later subcases). Indeed, this facilitate the study, because we can so study case by case the different dynamics and their respective consequences.
+The aim of this section is to give two axes, to grade a dynamical behaviour, given the corresponding set of parameters.
+
+
+\subsubsection{Fuel accumulation versus burning effect}
 
 \paragraph{}
-Because we want to explore exhaustively the different dynamics cases, we introduce a coefficient to distinguish typical cases. Different \hyperref[other_ratio]{others coefficients} have been tested but only the following is used. After, another axes will be used to subdivide each cases.
+The first axes focuses on representing the major effect between accumulation of fuel and fuel burning. In order to do this, we approximate the average of each effects at the point $(1, \frac{m}{2d})$. The approximation $N=1$ is reasonable because $N$ is usually close to $1$. We make the derivation when $W = \frac{m}{2d}$ because we can see if at this point the dynamics tends to pull back fuel at a lower level or at a higher level. For example, if for a set of parameter, fuel accumulation dominate, the fuel is usually higher than $W = \frac{m}{2d}$ and if this density go down at this point the dynamics will tends to increase the level of fuel.
+%\todo{perhaps come back at the choice of "initial point" at he of demonstration to justify why it make sense}
 
-For the first axis, we introduce the ratio called "r" which is an approximation of the average of density burned over the average of growth. This is useful to discern the predominance between the growth of W and the density burned of W. For example, if $r$ is low, growth predominates the fire effect.
+\paragraph{}
+Firstly, we want to estimate the fuel accumulation rate at the point $(1, \frac{m}{2d})$. We rewrite the second equation of the system without the fire term (we denote $W_g$ the solution of this new equation).
 \[
-r = fs\beta(\frac{2}{m}+\frac{\alpha}{d})
+\left\lbrace
+\begin{array}{rcl}
+\frac{d W_g}{dt} & = & mN-dW_g \\
+W_g(0) & = & \frac{m}{2d} \\
+\end{array}
+\right.
 \]
-A more details derivation of this ratio is given is \hyperref[derivation_ratio]{appendix}.
+The solution is,
+\[
+\begin{array}{rcl}
+W_g(t) & = & \frac{m}{d}(1-\frac{1}{2}\exp(-td)) \\
+\end{array}
+\]
+And the fuel accumulation rate (at the point $(1, \frac{m}{2d})$) is 
+\[
+\begin{array}{rcl}
+\frac{dW_g}{dt}|_{t=0} & = & \frac{m}{2} \\
+\end{array}
+\]
+The fuel accumulation rate is $\frac{m}{2}$.
 
 
 \paragraph{}
-We can so distinguish a gradient of two extreme case with an intermediate one. The first one, when "$r$" is low, is called "return to equilibrium". The dynamics is quite simple : most of the time $W$ have the time to come back near $W^{eq}$ before another fire occur.
+We want now to approximate the fuel burning rate of $W$. The general fire term is 
+\[
+\delta_f(t)s(t)\beta(N+\alphaW)
+\]
+Applied at the point $(1, \frac{m}{2d})$ it is,
+\[
+\delta_f(t)s(t)\beta(1+\alpha\frac{m}{2d})
+\]
+We average the stochastic effect and have
+\[
+fs\beta(1+\alpha\frac{m}{2d})
+\]
+The average fuel burning rate is $fs\beta(1+\alpha\frac{m}{2d})$.
+
+\paragraph{}
+We can now define the first axes like the ratio of the fuel \textit{Accumulation} rate over the average fuel \textit{Burning} rate.
+
+\[
+\begin{array}{rcl}
+AB & = & \frac{fs\beta(1+\alpha\frac{m}{2d})}{\frac{m}{2}} \\
+AB & = & fs\beta(\frac{2}{m}+\frac{\alpha}{d}) \\
+\end{array}
+\]
+
+
+\subsubsection{Possibility to collapse}
+
+
+\paragraph{}
+The second axis represent the possibility to collapse. Indeed, it is unlikely to collapse if the severity of the fire is really low (compare to $N = 1$). We can define the axis 
+%We say that the system is unlikely to collapse if the probability to collapse with only one fire is lower than $0.01$.
+\[
+\begin{array}{rccl}
+                &  P(s(N+\alpha W) > N-a ) & < & 0.01 \\
+\Leftrightarrow &  P(s(1+\alpha \frac{m}{d}) > 1-a ) & < & 0.01 \\ 
+\Leftrightarrow &  P(s > \frac{1-a}{(1+\alpha \frac{m}{d})} ) & < & 0.01 \\ 
+\Leftrightarrow &  \exp(-\frac{1-a}{s(1+\alpha\frac{m}{d})}) & < & 0.01 \\ 
+\end{array}
+\]
+
+
+
+
+\paragraph{}
+Also, for some set of parameter, it is impossible to collapse because they are never enough fuel to maintain a fire strong enough to collapse the forest. We will place this particular specimen at the beginning of the axis.
+
+%We now consider the equilibrium point $(1, \frac{m}{d}$) because it is when both $N$ and $W$ are higher and thus the total severity of the fire is higher too.
+
+We still consider to be close to the equilibrium point $(1, \frac{m}{d}$).
+\[
+\left\lbrace
+\begin{array}{rcl}
+     N & = & 1 \\
+     W & = & \frac{m}{d} \\
+\end{array}
+\right.
+\]
+Thus, the quantity burned in only one fire can not be higher than $\frac{m}{d}$. \\
+Formally,
+\[
+\begin{array}{crcl}
+&s\beta(N+\alpha W) & < & W \\
+\Rightarrow & s\beta(1+\alpha \frac{m}{d}) & < & \frac{m}{d} \\
+\end{array}
+\]
+For the first equation (for $N$) we have a collapse only if
+\[
+\begin{array}{rccl}
+                &  s(N+\alpha W) & > & N-a \\
+\Leftrightarrow &  s(1+\alpha \frac{m}{d}) & > & 1-a \\ 
+\Leftrightarrow &  \frac{m}{d\beta} & > & 1-a \\ 
+\Leftrightarrow &  \frac{m}{d( 1-a)} & > & \beta \\ 
+\end{array}
+\]
+Thus, if this condition is not respected (in practice when $\beta$ is high enough) it is impossible to have a collapse. We can see below  an example when the lack of $W$ prevent the collapse of the forest.
+
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3.9cm]{return_to_eq_1.png}
-\includegraphics[width=3.9cm]{return_to_eq_2.png}
-\includegraphics[width=3.9cm]{return_to_eq_3.png}
+\includegraphics[width=12cm]{return_never_1.png}
+\caption{For this set of parameter, even for a strong fire, fuel is too low to maintain a fire able to collapse the system}
+%\label{fig:universe}
+\end{figure}
+
+\paragraph{}
+In conclusion, the second axis is constructed by the severity of the fire compared to others parameters, 
+\[
+\exp(-\frac{1-a}{s(1+\alpha\frac{m}{d})})
+\]
+and for some specimen when the fuel is not enough to maintain a fire, when the following expression is not respected,
+\[
+\frac{m}{d( 1-a)} > \beta
+\]
+the specimen is constrained to be at the lower level of the axis.
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Result
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Results}
+
+\subsection{Model dynamics}
+
+
+%a= 0.02 , m= 0.25 , d= 0.015625 , strength= 0.005 , alpha= 20 , beta= 2.0 % linear
+%a= 0.02 , m= 0.25 , d= 0.015625 , strength= 0.01 , alpha= 40 , beta= 2.0 % counter
+%a= 0.02 , m= 0.5 , d= 0.015625 , strength= 0.01 , alpha= 10 , beta= 2.0 % clock
+
+\paragraph{}
+We being by considering the possible dynamics that can occur in our model. Here, by changing almost only the value of $m$ and $\alpha$, in particular, the frequency remain the same, we have three time series with different general behaviour.
+
+In the first one, the recovery after a fire is very slow, the system can subsist only because the average strength of fire is sufficiently low. For another example, the recovery is still slow, however, here it is because the level of fuel remain too low that the system can resist to the first fires. In the last illustration, the recovery is too fast to maintain a low level of fuel, therefore, fuel accumulate, and a strong fire collapse the system.
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[height = 4cm]{results/time_series_case_linear_2.png}
+\includegraphics[height = 4cm]{results/time_series_case_counter_2.png}
+\includegraphics[height = 4cm]{results/time_series_case_clock_2.png}
+\end{center}
+\caption{\label{fig:temp}From left to right, $m$ (the decay rate) increase and $\alpha$ decrease}
+\end{figure}
+% or category or type, kinds 
+% Time series for three different value of $m$ and $\alpha$
+% the general behaviour is different ...
+%Class linear, counter-clockwise and clockwise
+
+
+
+\newpage
+
+\subsection{Dynamics cases}
+
+%\paragraph{}
+%In order to better understand the dynamics of the system, we distinguish different cases (and later subcases). Indeed, this facilitate the study, because we can so study case by case the different dynamics and their respective consequences.
+
+%\paragraph{}
+%A better differentiation could be done, it is possible to determine different cases of typical dynamical behaviour.
+%%\paragraph{}
+%Because we want to explore exhaustively the different dynamics cases, we introduce a coefficient to distinguish typical cases. Different \hyperref[other_ratio]{others coefficients} have been tested but only the following is used. After, another axes will be used to subdivide each cases.
+
+\paragraph{}
+Although we see different behaviour by changing only two parameters, the connection is not clear. So we will now try to clarify this by using previous defined axes by which we can exhaustively compare all the possible types of dynamics.
+
+The first axes compare the effect of fuel decay and burning. The first axes is also used to construct the second one : the possibility to collapse.
+
+Below are presented several time series for each subcases, in order to give an idea of the general behaviour for each cases.
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=12cm]{results/time_series_each_cases.png}
 \caption{Return to equilibrium}
 %\label{fig:universe}
 \end{figure}
 
 
 
+\paragraph{} \todo{most of this is already explained in methods}
+For the first axis, we introduce the ratio called "accumulation versus burning" abreviating by $avb$ which is an approximation of the average of density burned over the average of fuel accumulation. Different \hyperref[other_ratio]{others coefficients} have been tested but only this one is used. This is useful to discern the predominance between the accumulation of W and the density burned of W. For example, if $avb$ is low, growth predominates the fire effect.
+
+Mathematically, the average of density burned is estimated by $fs\beta(1+\frac{\alpha m}{2d})$ and the average of the fuel accumulation rate by $\frac{m}{2}$.
+\[
+avb = fs\beta(\frac{2}{m}+\frac{\alpha}{d})
+\]
+A more details derivation of this ratio is given in \hyperref[derivation_ratio]{appendix}.
+
+
 \paragraph{}
-At the opposite, when the ratio called $r$ is high, in another word when fire tend to annihilate the growth of $W$, this one remains low. 
+We can so distinguish a gradient of two extreme case with an intermediate one. The first one, when $avb$ is low, is called "return to equilibrium". The dynamics is quite simple : most of the time $W$ have the time to come back near $W^{eq}$ before another fire occur.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=3.9cm]{return_to_eq_1.png}
+\includegraphics[width=3.9cm]{return_to_eq_2.png}
+\includegraphics[width=3.9cm]{return_to_eq_3.png}
+\caption{Time series for different parameter sets corresponding to the case : Return to equilibrium}
+%\label{fig:universe}
+\end{figure}
+
+
+
+\paragraph{}
+At the opposite, when the ratio called $avb$ is high, in another word when fire tend to annihilate the growth of $W$, this one remains low. 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=3.9cm]{continue_1.png}
 \includegraphics[width=3.9cm]{continue_2.png}
 \includegraphics[width=3.9cm]{continue_3.png}
-\caption{Fuel low}
+\caption{Time series for different parameter sets corresponding to the case : Fuel low}
 %\label{fig:universe}
 \end{figure}
 
@@ -711,20 +924,22 @@ Between the two previous cases, we define a third cases called "equivalent". It 
 \includegraphics[width=3.9cm]{middle_1.png}
 \includegraphics[width=3.9cm]{middle_2.png}
 \includegraphics[width=3.9cm]{middle_3.png}
-\caption{Equivalent}
+\caption{Time series for different parameter sets corresponding to the case : Equivalent}
 %\label{fig:universe}
 \end{figure}
 
 
 \paragraph{}
-Also, in order to visualise the limit of each cases, examples for each limits are presented
+In order to visualise the limit of each cases, examples for each limits are presented.
+For the limit between "return to equilibrium" and "equivalent" we could see that a fire often occur before the dynamics come back to equilibrium. For the second one, we see that fuel is quite low, but could sometimes take relatively high value.
+
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=3.9cm]{lim_eq_middle_1.png}
 \includegraphics[width=3.9cm]{lim_eq_middle_2.png}
 \includegraphics[width=3.9cm]{lim_eq_middle_3.png}
-\caption{Limit return to equilibrium / equivalent}
+\caption{Time series for different parameter sets corresponding to the limit between return to equilibrium and equivalent}
 %\label{fig:universe}
 \end{figure}
 
@@ -734,7 +949,7 @@ Also, in order to visualise the limit of each cases, examples for each limits ar
 \includegraphics[width=3.9cm]{lim_c_middle_1.png}
 \includegraphics[width=3.9cm]{lim_c_middle_2.png}
 \includegraphics[width=3.9cm]{lim_c_middle_3.png}
-\caption{Limit fuel low / equivalent}
+\caption{Time series for different parameter sets corresponding to the limit between fuel low and equivalent}
 %\label{fig:universe}
 \end{figure}
 
@@ -743,7 +958,6 @@ Also, in order to visualise the limit of each cases, examples for each limits ar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% subcases %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-
 
 \subsubsection{"Return to equilibrium"}
 
@@ -790,7 +1004,7 @@ Thus, if this condition is not respected (in practice when $\beta$ is high enoug
 
 \newpage
 \paragraph{}
-Also, it is unlikely (no more certainty) to collapse if the severity of the fire is really low (compare to $N = 1$). We say that the system is unlikely to collapse if the probability to collapse with only one fire is lower than $0.01$.
+Also, it is unlikely (no more certainty) to collapse if the severity of the fire is sufficiently low (compare to $N = 1$). We say that the system is unlikely to collapse if the probability to collapse with only one fire is lower than $0.01$.
 \[
 \begin{array}{rccl}
                 &  P(s(N+\alpha W) > N-a ) & < & 0.01 \\
@@ -804,7 +1018,7 @@ Also, it is unlikely (no more certainty) to collapse if the severity of the fire
 \begin{figure}[h!]
 \centering
 \includegraphics[width=9cm]{return_never_2.png}
-\caption{Never collapse}
+\caption{Time series for different parameter sets corresponding to the case : Never collapse}
 %\label{fig:universe}
 \end{figure}
 
@@ -824,7 +1038,7 @@ At the opposite, for some set of parameter, the system always collapse. Of cours
 \includegraphics[width=3.9cm]{return_always_1.png}
 \includegraphics[width=3.9cm]{return_always_2.png}
 \includegraphics[width=3.9cm]{return_always_3.png}
-\caption{Always collapse}
+\caption{Time series for different parameter sets corresponding to the case : Always collapse}
 %\label{fig:universe}
 \end{figure}
 
@@ -841,7 +1055,7 @@ Between this two extremes sub-cases, exists a range of parameters when a collaps
 \includegraphics[width=3.9cm]{return_between_1.png}
 \includegraphics[width=3.9cm]{return_between_2.png}
 \includegraphics[width=3.9cm]{return_between_3.png}
-\caption{Intermediate case}
+\caption{Time series for different parameter sets corresponding to the case : Intermediate case}
 %\label{fig:universe}
 \end{figure}
 
@@ -862,7 +1076,7 @@ Following the same idea than previously, when $W$ is always low, collapse can ne
 \begin{figure}[h!]
 \centering
 \includegraphics[width=12cm]{lim_c_middle_1.png}
-\caption{Fuel low}
+\caption{Time series for different parameter sets corresponding to the case : Fuel low}
 %\label{fig:universe}
 \end{figure}
 
@@ -874,19 +1088,20 @@ Following the same idea than previously, when $W$ is always low, collapse can ne
 %\todo{illustrate}
 
 \paragraph{}
-The case called "equivalent" is the harder to study. Thus, we extrapolate the previous results to this case. To do this, we divided arbitrarily the case in two. We use the ratio "$r$" for this. When "$r$" is higher we assume we are relatively close to the case "fuel low". Here, we can collapse when the fuel grow fast enough (relatively to the fire frequency) to accumulate enough fuel and be able to collapse.
+\todo{}
+The case called "equivalent" is the harder to study, because $W$ fluctuates a lot, it is thus more difficult to have analytic results. That is why we extrapolate the previous results (return to equilibrium, \todo{section ... } and low fuel \todo{section ...} to this case. To do this, we divided arbitrarily the case in two. We use the ratio $avb$ for this. When $avb$ is higher we assume we are relatively close to the case "fuel low". Here, we can collapse when the fuel grow fast enough (relatively to the fire frequency) to accumulate enough fuel and be able to collapse.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=3.9cm]{equivalent_high_1.png}
 \includegraphics[width=3.9cm]{equivalent_high_2.png}
 \includegraphics[width=3.9cm]{equivalent_high_3.png}
-\caption{Case : Equivalent, but close to "fuel low"}
+\caption{Time series for different parameter sets corresponding to the case : Equivalent, but close to "fuel low"}
 %\label{fig:universe}
 \end{figure}
 
 \paragraph{}
-Also, when "$r$" is lower, we use again the three sub-cases (from the case "return to equilibrium") to characterise the dynamics of the system. We can observe that for this example, the dynamics do not change much, and that the extrapolation could make sense (but only if $r$ is low enough).
+Also, when $avb$ is lower, we use again the three sub-cases (from the case "return to equilibrium") to characterise the dynamics of the system. We can observe that for this example, the dynamics do not change much, and that the extrapolation could make sense (but only if $avb$ is low enough).
 %\todo{ratio low, proche "return", on herite des 3 cas, never always, between}
 %\todo{illustrer 3 exemples pour chaque cas}
 
@@ -897,7 +1112,7 @@ Also, when "$r$" is lower, we use again the three sub-cases (from the case "retu
 \includegraphics[width=3.9cm]{equivalent_low_never_1.png}
 \includegraphics[width=3.9cm]{equivalent_low_never_2.png}
 \includegraphics[width=3.9cm]{equivalent_low_never_3.png}
-\caption{Case : Equivalent, never collapse}
+\caption{Time series for different parameter sets corresponding to the case : Equivalent, never collapse}
 %\label{fig:universe}
 \end{figure}
 
@@ -909,7 +1124,7 @@ Also, when "$r$" is lower, we use again the three sub-cases (from the case "retu
 \includegraphics[width=3.9cm]{equivalent_low_always_1.png}
 \includegraphics[width=3.9cm]{equivalent_low_always_2.png}
 \includegraphics[width=3.9cm]{equivalent_low_always_3.png}
-\caption{Case : Equivalent, always collapse}
+\caption{Time series for different parameter sets corresponding to the case : Equivalent, always collapse}
 %\label{fig:universe}
 \end{figure}
 
@@ -917,64 +1132,182 @@ Also, when "$r$" is lower, we use again the three sub-cases (from the case "retu
 
 %\paragraph{}
 
+\newpage
 \begin{figure}[h!]
 \centering
 \includegraphics[width=6cm]{equivalent_low_between_1.png}
 \includegraphics[width=6cm]{equivalent_low_between_2.png}
-\caption{Case : Equivalent, intermediate case}
+\caption{Time series for different parameter sets corresponding to the case : Equivalent, intermediate case}
 %\label{fig:universe}
 \end{figure}
 
 
 
-\todo{link dynamics cases with scenarios management (explain that they are a link "between dynamics" cases and "scenarios management" however it is two different concept)}
 
-\todo{consequences for cp and variability}
+\newpage
+\subsection{Link between variability and cp}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Result
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\todo{You need to do this more slowly and coherently, and refer to different figures as you go along.}
+\paragraph{}
+For each of this dynamical cases, the behaviour of the two measure used, variability and collapse probability changed. Indeed, we can see below that that two measures increase for all subcases of "return to equilibrium" except for the subcases "never" where "cp" remains null. Same, they are a peak for each measures (always, except for the subcases "never", "cp" remains equal to $0$). And, for fuel low, both measure are decreasing to $0$.
+
+We can remark, especially for the case "equivalent" that the two peak do not occur at the same time.
+
+\todo{- Figs. 26-28(29) can be perhaps kept in a similar form, and better explained, or joined together to some figure that shows all cases together in an organized manner. Each figure needs to be better presented, perhaps without the estimations as it is right now "adding noise", using more height (they are quite "narrow" right now), and so on.
+}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=6cm]{results/return_never_2.png}
+\includegraphics[width=6cm]{results/equivalent_never.png} \\
+\end{center}
+\caption{\label{fig:temp}Left Return to equilibrium / never and right : Equivalent / never} % or category or type, kinds
+\end{figure}
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=6cm]{results/return_moderate_2.png}
+\includegraphics[width=6cm]{results/equivalent_moderate_2.png} \\
+\end{center}
+\caption{\label{fig:temp}Left Return to equilibrium / moderate and right : Equivalent / moderate}\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=6cm]{results/return_always_2.png} 
+\includegraphics[width=6cm]{results/equivalent_always.png} \\
+\end{center}
+\caption{\label{fig:temp}Left Return to equilibrium / always and right : Equivalent / always}\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=10cm]{results/fuel_low.png}
+\end{center}
+\caption{\label{fig:temp}Fuel low}\end{figure}
+
+
+
+
 
 
 \newpage
-\section{Results}
+\paragraph{}
+Previously, the frequency range used was choose to remains in the same sub cases. Now, we want to know what happens when the frequency range is higher. To do this, we study the transition of subcases when we double the frequency. 
 
-%\subsection{Link literature model}
-
-%\begin{itemize}
-%    \item link collapse probability and the parameter (enough data ?)
-%    \item link variability with the parameter in the literature ? ? ? 
-%\end{itemize}
+We can see that the ability to collapse in one fire do not change, however, the ratio change, and thus, doubling the frequency could change the dynamical cases for axis 1 but not for axis 2. \todo{reformulate}
 
 
-\subsection{Link between variability and cp}
+\todo{write the matrix in latex, and write the name of subcases for each (table env)}
 
-\begin{itemize}
-    \item explain the idea of the loop (we have already talk in the methodology about the link between varaibility and cp ... )
-    \item show the loop in different case \todo[color=purple]{demonstrate that we have found all the possible cases (use case dynamics and/or estimation)}
-    \item illustrate different part of the loop with numerical simulation to give an intuition (show time series for the following cases)
-    \begin{itemize}
-        \item no cp no var
-        \item high variability low cp
-        \item high variability high cp
-    \end{itemize}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=12cm]{results/matrice_transition.png}
+\end{center}
+\caption{\label{fig:temp}Transition matrix}
+\end{figure}
 
-    \item link with dynamical cases (for each sub cases plot a representative plot)
-    \itme use estimation (exploit them numerically) to "understand the "shape" of the loop. (illustrate when we are in typical case, for example return to equilibrium, AND when we change from one case to another one)
-    \item use numerical simulations to study the location of the peak (study the order and the distance (on frequency scale) between the different peaks (variability, collapse probability and average) )
-    \item (same fire, same time ...) in order to better understand how the variability changed (it is a method ... ) demonstrate numerically that they are still a peak of variability (we can now know that it is not an artefact of cp)
-\end{itemize}
 
-\subsection{Implication for management}
+
+
+
+\paragraph{}
+Depending on the parameter set choose, the dynamics is different and therefore, the variability and the collapse probability do not react similarly. Also, we focus here on the influence of frequency to the dynamics. We can see below that increasing frequency could have different effect on variability and collapse probability.
+
+On the first one, variability and cp first increase together and after decrease (the decreasing part is not always present). On the second one, the two measure are also increasing and decreasing but not in the same time, more surprisingly cp increase before variability. However, in the last class presented, the loop is clockwise.
+
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=10cm, height = 4.2cm]{case_linear.png}
+\includegraphics[width=10cm, height = 4.2cm]{case_triangular.png}
+\includegraphics[width=10cm, height = 4.2cm]{case_clockwise.png}
+\end{center}
+\caption{\label{fig:temp}From left to right : Class linear, counter-clockwise and clockwise} % or category or type, kinds
+\end{figure}
+
+
+
+\newpage
+\subsection{Implication for perturbations effects.}
+
+
+\subsubsection{fuel removal}
+
+\paragraph{}
+Now, we want to study the impact of the parameter $d$ to the variability and collapse probability of the system. To do this, we repeat the study for the three main "dynamical cases". Indeed, the second axes used to subdivide each cases use the notion of "collapse probability", which it make more sense here to measures it than to estimate it. 
+
+In practice, we choose for each case a set of parameter in order to have be able to varies the value of $d$ while remaining in the same dynamic cases.
+
+We can see that for each dynamics cases, increase $d$ decrease variability and collapse probability. This make sense, because increasing $d$ decrease the value of the $W^*$ the average of $W$. In practise it is clearly intuitive, if the decay of the dead wood is higher, the density of the dead wood tend to be lower. The consequences is that the fire have not anymore enough fuel to trigger a collapse and the variability is lower because $W$ take always small value.
+
+However, if in the case "return to equilibrium" variability and collapse probability are similar, for the case "equivalent" variability decrease slower and after collapse probability. Also, in the case "fuel low", the variability decrease even if the collapse probability remains null.
+
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=6cm]{results/return_to_equilibrium_1.png}
+\includegraphics[width=6cm]{results/equivalent_1.png}
+\includegraphics[width=6cm]{results/fuel_low_1.png}
+\end{center}
+\caption{\label{fig:temp}Impact of $d$, from left to right : "return to equilibrium, "equivalent" and "fuel low"}
+\end{figure}
 
 
 \paragraph{}
 fuel removal, very efficient to decrease cp
 
+
+\newpage
+\subsubsection{Drought}
+
+
 \paragraph{}
-In drought perturbation, we have a decrease of variability but an increase to the collapse probability \todo[color=purple]{EXTEND THIS RESULT, check, illustrate}
+We now focus on the drought scenarios. This is a current subject (a lot of recent papers about this). This is mainly a consequence of extreme weather as a result of climate changed. We link this scenarios to the parameters $f, s, \alpha$ and $\beta$ of our model. It have been shown that drought increase the frequency, the severity and the size of fire (here, we not use the last result). Also, because fuel are drier, parameters $\alpha$ and $\beta$ are higher. In brief, the consequences of climate warming is formalised by a higher values of both $f, s, \alpha$ and $\beta$.
 
 
+
+\paragraph{}
+It can be \hyperref[drought_increase]{demonstrated} that increasing this $4$ parameters increase the ratio $avb$. Thus, a drought scenarios will tend firstly to increase both variability and the collapse probability and after a decrease of both measures.
+
+\todo{explain what we see below}
+\paragraph{}
+
+
+\todo{refaire plot sans estimation, en s'arretant aux limites et pas plus loin}
+\todo{ET REFORMULER}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=6cm]{results/drought/return_never.png}
+\includegraphics[width=6cm]{results/drought/equivalent_never.png}
+\end{center}
+\caption{\label{fig:temp}Left : return to equilibrium / never, Right : equivalent / never}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=6cm]{results/drought/return_moderate.png}
+\includegraphics[width=6cm]{results/drought/equivalent_moderate.png}
+\end{center}
+\caption{\label{fig:temp}Left : return to equilibrium / moderate, Right : equivalent / moderate}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=6cm]{results/drought/return_always.png}
+\includegraphics[width=6cm]{results/drought/equivalent_always.png}
+\end{center}
+\caption{\label{fig:temp}Left : return to equilibrium / always, Right : equivalent / always}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=10cm]{results/drought/fuel_low.png}
+\end{center}
+\caption{\label{fig:temp}Fuel low}
+\end{figure}
 
 
 
@@ -987,6 +1320,54 @@ In drought perturbation, we have a decrease of variability but an increase to th
 \section{Discussion}
 \todo{Try to not make repetition (or not too much)}
 
+
+
+\begin{itemize}
+    \item recall objective
+    \item general limitation (of the model, for example)
+    \item loop
+    \begin{itemize}
+        \item summarise results (what that means ?)
+        \item implications (why that matters ?)
+        \begin{itemize}
+            \item usually, we have a "correlation" between measures
+            \item it can be a problem to collapse without seeing "signal"
+        \end{itemize}
+        \item limitations specific to that
+        \begin{itemize}
+            \item numerically, bias when computing variability (because of collapse) 
+            \item but, with "same fire" we have not a collapse
+        \end{itemize}
+        \item relate to papers
+        \begin{itemize}
+            \item \cite{brock_variance_2006}
+            \item \cite{carpenter2006rising}
+            \item \cite{scheffer2015generic}
+            \item \cite{dakos_robustness_2012}
+            \item \cite{biggs_turning_2009}
+        \end{itemize}
+    \end{itemize}
+    \item fuel removal
+    \begin{itemize}
+        \item summarise results (what that means ?)
+        \item implications (why that matters ?)
+        \item limitations specific to that
+        \item relate to papers
+        \begin{itemize}
+            \item \cite{schoennagel_interaction_2004}
+            \item \cite{agee_basic_2005}
+            \item \cite{stephens_effects_2012}
+            \item \cite{fernandes}
+        \end{itemize}
+    \end{itemize}
+    \item drought
+    \begin{itemize}
+        \item summarise results (what that means ?)
+        \item implications (why that matters ?)
+        \item limitations specific to that
+        \item relate to papers
+    \end{itemize}
+\end{itemize}
 
 
 
@@ -1049,15 +1430,15 @@ More generally, because collapse can occur at different time (or never) it is di
 \addcontentsline{toc}{section}{Conclusion}
 
 
-\subsection*{Synthesis}
-\addcontentsline{toc}{subsection}{Synthesis}
+%\subsection*{Synthesis}
+%\addcontentsline{toc}{subsection}{Synthesis}
 
 
-\subsection*{Opening}
-\addcontentsline{toc}{subsection}{Opening}
+%\subsection*{Opening}    %%%%% Already in the discussions part !!!
+%\addcontentsline{toc}{subsection}{Opening}
 
-\paragraph{}
-Talk about a more general / different problem ...
+%\paragraph{}
+%Talk about a more general / different problem ...
 
 
 \newpage
@@ -1077,7 +1458,9 @@ Talk about a more general / different problem ...
 \bibliography{references_zotero,references}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 \appendix
@@ -1087,34 +1470,318 @@ Talk about a more general / different problem ...
 \section{Adimensionnalisation}
 \label{adim}
 
-\todo{calculus to Adimensionnalise the system}
+\paragraph{}
+The origianl model is the following :
 
-
-\newpage
-\section{Equilibrium}
-\label{equi}
-\todo{write the calculus of equilibrium and stability}
-
-
-
-\newpage
-\section{Technicality}
-
-\label{technicality}
-\subsection{Solve the system}
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{dn}{ds} & = & gN(1-\frac{n}{K})(\frac{n}{a}-1) - \delta_F(t)\phi(t)(n+\alpha w) \\
+\\
+\frac{dw}{ds} & = & \mu N - \eta W - \beta\delta_F(t)\phi(t)(N+\alpha W) \\
+\end{array}
+\right.
+\]
 
 \paragraph{}
-problem : compute a continuous dynamics with discrete disturbances \\
-solution : use classical solver between each fire and stop the solver when a fire occur to compute and remove the biomass
+We have two different dimension that can be removed : "biomass density" and time. We can remark that we could also consider that $N$ and $W$ have not the same dimension, and thus we could remove one more parameter. However, this would do not conserve anymore the respective proportion of $N$ and $W$.
 
+\paragraph{}
+Note
+\[
+\begin{array}{rcl}
+N & = & \frac{n}{\lambda} \\
+\\
+W & = & \frac{w}{\lambda} \\
+\\
+t & = & \frac{s}{\tau} \\
+\end{array}
+\]
+
+\paragraph{}
+We have thus the following system,
+\[
+\begin{array}{rl}
+& 
+
+\left\lbrace
+\begin{array}{rcl}
+\frac{\lambda}{\tau}\frac{dN}{dt} & = & g\lambda N(1-\frac{\lambda N}{K})(\frac{\lambda N}{a}-1) - \delta_F(t)\phi(t)(\lambda N+\alpha \lambda W) \\
+\\
+\frac{\lambda}{\tau}\frac{dW}{dt} & = & \mu \lambda N -\eta \lambda W - \beta\delta_F(t)\phi(t)(\lambda N+\alpha \lambda W) \\
+\end{array}
+\right.
+\\
+\\
+\Leftrightarrow & 
+\left\lbrace
+\begin{array}{rcl}
+\frac{dN}{dt} & = & \frac{g \lambda}{\tau a} N(1-\frac{\lambda N}{K})(N-\frac{a}{\lambda}) - \delta_F(t)\tau\phi(t)(N+\alpha W) \\
+\\
+\frac{dW}{dt} & = & \mu \tau N -\eta \tau W - \beta\delta_F(t)\tau\phi(t)(N+\alpha W) \\
+\end{array}
+\right.
+\end{array}
+\]
+
+
+If we take 
+\[
+\begin{array}{rcl}
+\lambda & = & K \\
+\tau & = & \frac{g\lambda}{a} \\
+A & = & \frac{a}{K} \\
+s(t) & = & \tau\phi(t) \\
+m & = & \tau\mu \\
+d & = & \tau\eta
+\end{array}
+
+\paragraph{}
+We have finally the following system,
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{dN}{dt} & = & N(1-N)(N-A) - \delta_F(t)s(t)(N+\alpha W) \\
+\frac{dW}{dt} & = & mN -dW - \beta\delta_F(t)s(t)(N+\alpha W) \\
+\end{array}
+\right.
+\]
+
+
+
+\newpage
+\section{Particular point}
+\label{equi}
+
+\subsection{Equilibrium}
+
+\paragraph{}
+We want to determine the equilibrium point for the deterministic part :
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{dN}{dt} & = & N(1-N)(N-A) \\
+\\
+\frac{dW}{dt} & = & mN -dW \\
+\end{array}
+\right.
+\]
+This point are characterise by
+\[
+\left\lbrace
+\begin{array}{rcl}
+N(1-N)(N-A) & = & 0\\
+mN -dW & = & 0\\
+\end{array}
+\right.
+\]
+To be an equilibrium point $N(1-N)(N-A)$ need to be equal to $0$. \\
+Thus, $N = 0$, $N = 1$ or $N = A$. \\
+For $N = 0$, we have $W = \frac{m}{d}N = 0$. \\
+For $N = 1$, we have $W = \frac{m}{d}N = \frac{m}{d}$. \\
+For $N = A$, we have $W = \frac{m}{d}N = \frac{m}{d}A$. \\
+
+\paragraph{}
+\\
+Finally, we have 3 equilibrium point,
+\[
+\begin{array}{l}
+\left\lbrace
+\begin{array}{rcl}
+N & = & 0 \\
+W & = & 0 \\
+\end{array}
+\right.
+\\
+\\
+\left\lbrace
+\begin{array}{rcl}
+N & = & 1 \\
+W & = & \frac{m}{d} \\
+\end{array}
+\right.
+\\
+\\
+\left\lbrace
+\begin{array}{rcl}
+N & = & A \\
+W & = & \frac{m}{d}A \\
+\end{array}
+\right.
+\end{array}
+\]
+
+\subsection{Stability}
+
+Here we want to study the stability of each equilibrium of the following system,
+
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{dN}{dt} & = & N(1-N)(N-A) \\
+\\
+\frac{dW}{dt} & = & mN -dW \\
+\end{array}
+\right.
+\]
+
+For the point $(0,0)$, we linearize, by noting 
+\[
+\begin{array}{rcl}
+\epsilon_N & = & N - 0 \\
+\epsilon_W & = & W - 0 \\
+\end{array}
+\]
+The system become
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{d\epsilon_N}{dt} & = & \epsilon_N(1-\epsilon_N)(\epsilon_N-A) \\
+\\
+\frac{d\epsilon_W}{dt} & = & m\epsilon_N -d\epsilon_W \\
+\end{array}
+\right.
+\]
+For both $\epsilon_N$ and $\epsilon_W$ small, we have
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{d\epsilon_N}{dt} & = & -\epsilon_N A \\
+\\
+\frac{d\epsilon_W}{dt} & = & m\epsilon_N -d\epsilon_W \\
+\end{array}
+\right.
+\]
+The eigenvalues of the Jacobian are, $-A$ and $-d$ because both $A$ and $d$ are positive, we have a stable point.
+\\
+\\
+For the point $(A,\frac{m}{d}A)$, we linearize, by noting 
+\[
+\begin{array}{rcl}
+\epsilon_N & = & N - A \\
+\epsilon_W & = & W - \frac{m}{d}A \\
+\end{array}
+\]
+The system become
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{d\epsilon_N}{dt} & = & (A+\epsilon_N)(1-A-\epsilon_N)\epsilon_N \\
+\\
+\frac{d\epsilon_W}{dt} & = & m(\epsilon_N+A) -d(\epsilon_W+\frac{m}{d}A) \\
+\end{array}
+\right.
+\]
+For both $\epsilon_N$ and $\epsilon_W$ small, we have
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{d\epsilon_N}{dt} & = & A(1-A)\epsilon_N \\
+\\
+\frac{d\epsilon_W}{dt} & = & m(\epsilon_N+A) -d(\epsilon_W+\frac{m}{d}A) \\
+\end{array}
+\right.
+\]
+An eigenvalue is $A(1-A)$, because $A\in(0,1)$ the eigenvalue is positive, and the point $(A,\frac{m}{d}A)$ is unstable.
+\\
+\\
+For the point $(1,\frac{m}{d})$, we linearize, by noting 
+\[
+\begin{array}{rcl}
+\epsilon_N & = & N - 1 \\
+\epsilon_W & = & W - \frac{m}{d} \\
+\end{array}
+\]
+The system become
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{d\epsilon_N}{dt} & = & (A+\epsilon_N)(-\epsilon_N)(1-A+\epsilon_N) \\
+\\
+\frac{d\epsilon_W}{dt} & = & m(\epsilon_N-1) -d(\epsilon_W+\frac{m}{d}) \\
+\end{array}
+\right.
+\]
+For both $\epsilon_N$ and $\epsilon_W$ small, we have
+\[
+\left\lbrace
+\begin{array}{rcl}
+\frac{d\epsilon_N}{dt} & = & -(1-A)\epsilon_N \\
+\\
+\frac{d\epsilon_W}{dt} & = & m(\epsilon_N-1) -d(\epsilon_W+\frac{m}{d}) \\
+\end{array}
+\right.
+\]
+The eigenvalues of the Jacobian are, $(1-A)$ and $-m$ because $m$ is positive and $a\in(0,1)$, we have a stable point.
+
+
+\paragraph{}
+To conclude, we have an unstable point $(A, \frac{m}{d}A)$ and two stable point, the origin $(0,0)$ and $(1, \frac{m}{d})$.
+
+
+\newpage
+\section{Solve the system}
+
+\label{technicality}
+
+\paragraph{}
+This appendices relate different problem faced to solve the dynamical system.
+
+
+\subsection{Algorithm}
+
+\paragraph{}
+As explain previously, the main to solve this system is the stochastic events. Indeed, the usual method to solve dynamical system, typically Runge-Kutta \cite{butcher1964implicit} used for each step actual but also previous estimation of the derivatives to better approximate the solutions. However, the non smoothness of the solutions due to the fire disturbance, prevent the use of this traditional method.
+
+The method choose here is to solve to stop the resolution of the system for each fire. In other word, we use classical method such as Runge-Kutta between each fire, and compute the effect of the fire when one occur and remove the correspond biomass.
+
+
+
+\begin{algorithm}
+\caption{Solver}
+\begin{algorithmic}
+\REQUIRE $Initial\_point$, $nbre\_iter$, $dt$
+\ENSURE $Final point$
+\STATE $Time = [0, dt, 2dt, ..., nbre\_iter \times dt]$
+\STATE $c=0$
+\WHILE{$c < nbre\_iter$}
+    \IF{$Fire[c] == False$}
+        \STATE $Sequence = [Time[c]]$
+        \STATE  $c = c + 1$
+        \WHILE{$c < nbre\_iter$ \AND $Fire[c] == False$}
+            \STATE $Sequence += [Time[c]]$
+            \STATE $c = c + 1$
+        \ENDWHILE
+        \STATE $Y = solve\_sequence(Initial\_point, Sequence)$
+    \ELSE
+        \STATE $initial\_point = Y - density\_burned(Y, c)$
+        \STATE $initial\_point = max(initial\_point, 0)$
+        \STATE $Y = solve\_sequence(initial\_point, [Time[c-1], Time[c]])$
+        \STATE $c = c + 1$
+    \ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
 
 \subsection{Choice of the time step}
-illustrate the problem of the choice of the time step, according to the frequency.
 
-\subsection{}
-Time of the study
+\paragraph{}
+In the study, frequency of the fire is a major concern, as a consequence, the time step need to be adapted. Indeed, it is important to at least several time step between each fire, in order to simulate the growth of the biomass. However, as always, a too small time step increased the time needed to compute the solutions. Here we choose the following relation to assign the value of the time step :
+\[
+dt = \min(0.1, \frac{0.1}{frequency})
+\]
 
 
+
+\subsection{Time of the study}
+
+\paragraph{}
+Same as the time step, the choice of the final time of the study is a compromised between the time needed to resolve the system (linear to the final time) and the robustness of the numerical approximation. In particular, because the model used stochastic events it is important to simulate for a long enough time in order to have a correct approximations of the variability.
+Also, we can remark that the final time change the value of the collapse probability (more we wait, more the system risk to collapse). However, the choice of final time do not affect the collapse probability by time units.
+
+\todo{plot evolution des measures VS time study, on doir voir une oscillation qui converge, pour var et cp by time units et une augmentation de cp}
 
 \newpage
 \section{Average estimation}
@@ -1122,7 +1789,7 @@ Time of the study
 
 \paragraph{}
 in order to not have to run too long simulation, an average of both $N$ and $W$ is estimated. It help to initialise the dynamics, indeed the transitions time is shorter
-\todo{ ? ? ? (plot time series in appendices, to compare if we take the initial point [1.,0] or $[1,\frac{m}{d}]$ explain that in this case we need to have really long simulation especially if $d$ the recovery rate is too small)}
+\todo{ ? ? ? (plot time series in appendices, to compare if we take the initial point [1.,0] or $[1,\frac{m}{d}]$ explain that in this case we need to have long enough simulation especially if $d$ the recovery rate is too small)}
 
 We use the following model :
 \[
@@ -1293,5 +1960,98 @@ Sometimes, the approximation of $W^*$ take negative value. Because $W$ can not b
 \label{derivation_ratio}
 
 \todo{rewrite, it is not clear for now}
+
+
+
+
+\newpage
+\section{Drought effect}
+\label{drought_increase}
+
+
+
+the consequences of climate warming is formalised by a higher values of both $f, s, \alpha$ and $\beta$.
+
+
+
+
+
+
+We recall that 
+\[
+W^* = \epsilon N^*
+\]
+With
+\[
+\epsilon = \frac{m-\beta s f}{d + \beta s f \alpha}
+\]
+Thus, when $f, s, \alpha, \beta$ are small
+\[
+\epsilon \approx \frac{m}{d}
+\]
+In practice, 
+\[
+W^* \approx W^{eq}
+\]
+But, when $f, s, \alpha, \beta$ are high enough
+\[
+\begin{array}{rcl}
+\epsilon & \approx & \frac{1}{\alpha} \\
+W^* & \approx & \frac{N^*}{\alpha} \\
+W^* & \approx & 0 \\
+\end{array}
+\]
+
+
+When $f, s, \alpha, \beta$ are small
+\[
+\begin{array}{rcl}
+\lambda_{threshold} & = & min(\{s(N^*+\alpha W^*), \frac{W^*}{\beta s (N^*+\alpha W^*)}\}) \\
+& = & s(N^*+\alpha W^*) \\
+\end{array}
+\]
+And, when $f, s, \alpha, \beta$ are high 
+\[
+\begin{array}{rcl}
+\lambda_{threshold} & = & min(\{s(N^*+\alpha W^*), \frac{W^*}{\beta s (N^*+\alpha W^*)}\}) \\
+& = & \frac{W^*}{\beta s (N^*+\alpha W^*)} \\
+& \approx & 0 \\
+\end{array}
+\]
+Thus, the variability is quite high when $f, s, \alpha, \beta$ are small and the variability is very small when $f, s, \alpha, \beta$ is high. In practice, drought decrease the variability.
+
+\paragraph{}
+Also, for the collapse probability, we use the following expression (in order to simplify the present calculus).
+\[
+cp1fire = (N^*+\alpha W^*)((N^*-a+s)\exp(-\frac{N^*-a}{s}) - (\frac{W^*}{\beta}+s)\exp(-\frac{W^*}{s\beta})
+\]
+Again, with $f, s, \alpha, \beta$ are small :
+\[
+\begin{array}{rcl}
+cp1fire & = & (N^*+\alpha W^*)((N^*-a+s)\exp(-\frac{N^*-a}{s}) - (\frac{W^*}{\beta}+s)\exp(-\frac{W^*}{s\beta})) \\
+& \approx & 0 \\
+\end{array}
+\]
+On the other hand, when $f, s, \alpha, \beta$ are high :
+\[
+\begin{array}{rcl}
+cp1fire & = & (N^*+\alpha W^*)((N^*-a+s)\exp(-\frac{N^*-a}{s}) - (\frac{W^*}{\beta}+s)\exp(-\frac{W^*}{s\beta})) \\
+& \approx & (N^*+\alpha W^*)((N^*-a+s).1 - (\frac{W^*}{\beta}+s).1)) \\
+& \approx & (N^*+\alpha W^*)(N^*-a) \\
+\end{array}
+\]
+Now, the probability to collapse with only one fire is non negligible. Furthermore, the probability to collapse in the time study increase even more because frequency if higher (recall $cp = 1-(1-cp1)^{fT}$).
+
+\paragraph{}
+We want now to study the consequences of drought with aspect to the different dynamical cases studying previously.
+\[
+r = fs\beta(\frac{2}{m}+\frac{\alpha}{d})
+\]
+The ratio $avb$ is almost the product of the coefficient of interest. We can deduce easily that the ratio increased with drought.
+
+
+
+
+
 
 \end{document}
