@@ -404,20 +404,17 @@ Same, we consider only one type of forest. Indeed, it have been argued that diff
 
 
 \paragraph{}
-\todo{useful to give value ? (and justify with paper) it is not that simple, it could be a mess ...}
-\todo{all value at least positive non null, and m lower than max(dn / dt)}
-
-This model used $9$ parameters, 5 for growth therms and 4 for the fire model.
-
-The first one $g$ is the grow rate of the living biomass. $K$ is the forest's carrying capacity. 
+%\todo{useful to give value ? (and justify with paper) it is not that simple, it could be a mess ...}
+%\todo{all value at least positive non null, and m lower than max(dn / dt)}
+The first parameter $g$ is the grow rate of the living biomass. $K$ is the forest's carrying capacity. 
 
 The allee effect threshold $A$ represent the minimum quantity of living biomass in order to survive. In other words, if the dynamics of $N$ go below $A$, the system collapse. The possible value of $A$ are between $0$ and $1$, but in practice $A$ take low value, typically between $0.02$ and $0.2$.
 
 For the growth part of dead wood, $m$ is the decay rate of living biomass (the rate of conversion from $N$ to $W$) and $d$ the decay rate of $W$ itself.
 
-Now, for the fire term, $\beta$ is the coefficient that represent the fact that $W$ burn easier than $N$. $\delta_F(t)$ and $s(t)$ represent respectively the fire occurrence and the severity of an eventual fire at the time $t$. \todo{beta and alpha bigger than $1$}
+Now, for the fire term, $\beta$ is the coefficient that represent the fact that $W$ burn easier than $N$. $\delta_F(t)$ and $s(t)$ represent respectively the fire occurrence and the severity of an eventual fire at the time $t$. 
 
-Finally, similar to $\beta$, $\alpha$ represent the fact that $W$ burn easier than $N$.
+Finally, similar to $\beta$, $\alpha$ represent the fact that $W$ burn easier than $N$. Both have to be bigger than $1$.
 
 
 
@@ -436,62 +433,15 @@ In order to simplify the study of the model, we adimensionnalise the system. We 
 \right.
 \]
 
-\paragraph{estimation of "reasonable" coefficient for this model%, sometimes easier to find "reasonable" coefficient, $K$ not anymore present, but not always ...
-} \todo{}
-
-
-%\paragraph{Remark} % equilibrium
-\paragraph{} % equilibrium
-To help understand the dynamics of the model used, we give some simple analytic result. to do this, we only consider growth terms.
-
-\[ % adim model
-\left\lbrace
-\begin{array}{rcl}
-\frac{dN}{dt} & = & N(1-N)(N-A) \\
-\\
-\frac{dW}{dt} & = & mN -dW \\
-\end{array}
-\right.
-\]
-
-\todo[color = purple]{reflechir à ce que je met en annexes} 
-
-\paragraph{}
-We have thus 3 equilibrium, 2 stable $(0, 0)$ and $(1, \frac{m}{d})$ and one unstable $(A, \frac{mA}{d})$ (\hyperref[equi]{calculus in appendix}).
-
-\paragraph{}
-Also, the figure below give an example for a well choose set of parameters of a time series. We can see that here the dynamics come back to the stable equilibrium $(1, \frac{m}{d})$ most of the time, except for the last fire when the system collapse to go to the other stable equilibrium $(0, 0)$. \todo{strength the temporal series (final time = 300)}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=6cm]{return_between_2.png}
-\caption{Time series example}
-%\label{fig:universe}
-\end{figure}
-
-\newpage
-\paragraph{}
-Also we represent the phase portrait for both $N$ and $W$. We recall that the dynamics of $W$ depend of the value $N$. 
-%%%%% same parameters set for both
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=6cm]{phase_N.png}
-\includegraphics[width=6cm]{phase_W.png}
-\caption{Phase portrait}
-%\label{fig:universe}
-\end{figure}
-
-\paragraph{}
-We can remark that the growth of the system is continuous and deterministic. However, the perturbation (fire) are discrete and stochastic. The implementation to solve the sytem need thus to take care of this, more details in \hyperref[technicality]{appendix}.
-%\todo{I have already 2-3 papers about this, re found, cite}
+%\paragraph{estimation of "reasonable" coefficient for this model%, sometimes easier to find "reasonable" coefficient, $K$ not anymore present, but not always ...
+%} \todo{}
 
 
 
 
 \paragraph{}
 \label{average_estimation}
-Also, in order to not have to run too long simulation, an average of both $N$ and $W$ is estimated. It help to initialise the dynamics, indeed the transitions time is shorter
+An average of both $N$ and $W$ is estimated. It help to initialise the system and have a shorter transitions time (in practice, simulation could be lower for the same accuracy). It will also be useful \hyperref[estimation]{later} to derive others estimations.
 
 An analytic expression is given, mainly based on the assumptions that frequency is high enough to consider that the global dynamics of the system is continuous (\hyperref[average]{calculus in appendix}).
 
@@ -584,7 +534,7 @@ In practice, we have to make compromise to decrease different bias. Even if the 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=12.cm]{time_series_sd_2.png}
-\caption{More robust variability}
+\caption{Less biased computation of variability (the bias of collapse is less important)}
 %\label{fig:universe}
 \end{figure}
 
@@ -622,9 +572,9 @@ Different technique have been used to minimise the bias to variability estimatio
 \end{figure}
 
 
-
+\newpage
 \subsubsection{Estimation}
-
+\label{estimation}
 
 \paragraph{} % estiamtion
 Numerical approximation of measures have two main drawback. Firstly, lot of time is needed, especially if we want to have a robust approximation (and so used long time simulation) and / or if we want to compute measure on a lot of parameters sets. Also, numerical approximation of measures do not give direct information of which and how parameters affect the measures. 
@@ -638,11 +588,11 @@ We denote $\lambda$ the average severity of a fire, estimated by
 \lambda = min(\{s(N^*+\alpha W^*), \frac{W^*}{\beta s (N^*+\alpha W^*)}\})
 \]
 We make the assumption that the effect of fire are independent (which is true when the dynamics is close to linear).
-And so, we predict the variability with, \cite{zelnik_impact_2018}
+And so, we predict the variability with, \cite{zelnik_impact_2018}. Details in \hyperref[variability_estimation]{appendix}.
 \[
 variability = f\frac{\lambda^2}{U}
 \]
-Details in \hyperref[variability_estimation]{appendix}
+
 
 
 \todo{figure for just this estimation of variability}
@@ -654,11 +604,11 @@ Details in \hyperref[variability_estimation]{appendix}
 \end{figure}
 
 \paragraph{}
-Of course, the precision of this estimation depend greatly to the parameters region. For example, on the figure below, we can see that the approximation is less accurate. We can see ... \todo{depend on the plot ... describe what is the difference}
+Of course, the precision of this estimation depend greatly to the parameters region. For example, on the figure below, we can see that the approximation is less accurate. We can see that the general behaviour of the estimation is correct, however, the value are overestimated.
 
 Generally, when the total severity of the fire is high, the accuracy of the estimation decreases. In practice, the product of the parameter $s.\alpha.\beta$ give an interesting clue of the precision of the variability estimation.
 
-Other estimation of variability have been implement and are presented in \hyperref[variability_estimation_other]{annexes}.
+Other estimation of variability have been implement and are presented in \hyperref[variability_estimation_other]{appendix}.
 
 \todo{make agian the plot with just the used estimation (just the "good" ones)}
 \begin{figure}[h!]
@@ -670,9 +620,7 @@ Other estimation of variability have been implement and are presented in \hyperr
 
 
 \paragraph{}
-Same as variability, we also estimate the collapse probability.
-
-For this, we assume that the system can only collapse with a unique fire. This probability is called $cp1$. Derivation could be found \hyperref[cp_derivation]{appendix}
+Same as variability, we also estimate the collapse probability. For this, we assume that the system can only collapse with a unique fire. This probability is called $cp1$. Derivation could be found \hyperref[cp_derivation]{appendix}.
 \[
 \begin{array}{rcl}
 cp1 & = & (N^*+\alpha W^*)((N^*-a+s)\exp(-\frac{N^*-a}{s}) - (\frac{W^*}{\beta}+s)\exp(-\frac{W^*}{s\beta})
@@ -1579,7 +1527,58 @@ We have finally the following system,
 
 
 \newpage
-\section{Particular point}
+\section{Simple results}
+
+%\paragraph{Remark} % equilibrium
+\paragraph{} % equilibrium
+To help understand the dynamics of the model used, we give some simple analytic result. to do this, we only consider growth terms.
+
+\[ % adim model
+\left\lbrace
+\begin{array}{rcl}
+\frac{dN}{dt} & = & N(1-N)(N-A) \\
+\\
+\frac{dW}{dt} & = & mN -dW \\
+\end{array}
+\right.
+\]
+
+\todo[color = purple]{reflechir à ce que je met en annexes} 
+
+\paragraph{}
+We have thus 3 equilibrium, 2 stable $(0, 0)$ and $(1, \frac{m}{d})$ and one unstable $(A, \frac{mA}{d})$ (\hyperref[equi]{calculus in appendix}).
+
+\paragraph{}
+Also, the figure below give an example for a well choose set of parameters of a time series. We can see that here the dynamics come back to the stable equilibrium $(1, \frac{m}{d})$ most of the time, except for the last fire when the system collapse to go to the other stable equilibrium $(0, 0)$. \todo{strength the temporal series (final time = 300)}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=6cm]{return_between_2.png}
+\caption{Time series example}
+%\label{fig:universe}
+\end{figure}
+
+\newpage
+\paragraph{}
+Also we represent the phase portrait for both $N$ and $W$. We recall that the dynamics of $W$ depend of the value $N$. 
+%%%%% same parameters set for both
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=6cm]{phase_N.png}
+\includegraphics[width=6cm]{phase_W.png}
+\caption{Phase portrait}
+%\label{fig:universe}
+\end{figure}
+
+%\paragraph{}
+%We can remark that the growth of the system is continuous and deterministic. However, the perturbation (fire) are discrete and stochastic. The implementation to solve the sytem need thus to take care of this, more details in \hyperref[technicality]{appendix}.
+%\todo{I have already 2-3 papers about this, re found, cite}
+
+
+
+
+\subsection{Particular point}
 \label{equi}
 
 \subsection{Equilibrium}
