@@ -375,12 +375,11 @@ The main purpose of the present document is to exhibit an ecosystem case where d
 
 
 \paragraph{}
-We consider a model of a forest fire, with $N$ being live biomass and $W$ dead wood. The living biomass is defined like standing alive tree and dead wood is dead wood debris and standing dead trees \cite{russell2015quantifying}.
+We consider a model of forest growth undergoing repeated fires, N represents the biomass of living trees, i.e. standing alive tree, while W represents dead wood (for example dead wood debris and standing dead trees \cite{russell2015quantifying}). 
 
-The living biomass follow a logistic growth \cite{tsoularis2002analysis} \cite{jensen1975comparison} with an allee effect \cite{stephens1999allee} \cite{amarasekare1998allee}. On the other hand, the evolution of the dead wood is proportional to the density of $N$ and decay with time \cite{kahl_wood_2017} \cite{shorohova_stump_2012} \cite{christensen_estimation_1977} \cite{delaney_quantity_1998} \cite{barbosa_decomposition_2017} \cite{fravolini_quantifying_2018} \cite{wilson_dynamics_2005} \cite{zielonka_dynamics_nodate}.
+The living biomass follow a logistic growth \cite{tsoularis2002analysis} \cite{jensen1975comparison} with an allee effect \cite{stephens1999allee} \cite{amarasekare1998allee}, it could be notice that under the value of this threshold, the system collapse. For the second equation, the evolution of the dead wood is proportional to the density of $N$ and decay with time \cite{kahl_wood_2017} \cite{shorohova_stump_2012} \cite{christensen_estimation_1977} \cite{delaney_quantity_1998}.% \cite{barbosa_decomposition_2017} \cite{fravolini_quantifying_2018} \cite{wilson_dynamics_2005} \cite{zielonka_dynamics_nodate}. %% sinon ça fait trop de citation
 
-Both $N$ and $W$ are affected by fire, with a stronger effect for $W$ (the dead wood burn easier than $N$). A fire occur when $t\in F$ the set of fire events. The severity of the fire is assumed to follow an exponential law of average $strength$. Finally, the severity of the fire is proportional the density biomass $N$ and $W$ with a greater importance for $W$ \cite{martinson_fuel_2013} \cite{safford_effects_2009} \cite{lecomte_effects_2006}.
-
+Fire is modelled by discrete events and affected both $N$ and $W$, with a stronger effect for $W$ (the dead wood burn easier than $N$)\todo{find ref}. The occurrence of a fire is register in the sequence $F$, for a given time, if $t\in F$ a fire appears. The severity of the fire is assumed to follow an exponential law of average $s$. Finally, the severity (i.e. amount of living and dry biomass burned), is proportional to the density biomass $N$ and $W$ with stronger sensitivity to $W$ \cite{martinson_fuel_2013} \cite{safford_effects_2009} \cite{lecomte_effects_2006}. The model is given by two equations
 \paragraph{}
 
 \[
@@ -393,17 +392,8 @@ Both $N$ and $W$ are affected by fire, with a stronger effect for $W$ (the dead 
 \right.
 \]
 
-The major assumption of the model is that fire frequency is independent of fuel density, it will be argued later that do not question the following results of this study.
-
-Another assumption is that fire need fuel ($W$) to burn. In other words, when $W=0$, fire stop. It is based on the fact that fire are manly driven by fuel \cite{schoennagel_interaction_2004} \cite{stephens_effects_2012} \cite{syphard_comparing_2011} \cite{safford_effects_2009} \cite{stephens_experimental_2005}.
-
-Also, we consider only density biomass and do evaluate the spatial distribution of both density and fire severity \cite{bergeron_natural_2002}.
-
-Same, we consider only one type of forest. Indeed, it have been argued that different type of forest fire could be differentiate (crown fires, light surface fires ... ) \cite{heinselman1981fire}.
-% fire severity proportional to the density of $N$ and $\alpha W$ 
-
-
-\paragraph{}
+\todo{talk more about possible values, or anything else that seems relevant}
+\paragraph{} % parameter 
 %\todo{useful to give value ? (and justify with paper) it is not that simple, it could be a mess ...}
 %\todo{all value at least positive non null, and m lower than max(dn / dt)}
 The first parameter $g$ is the grow rate of the living biomass. $K$ is the forest's carrying capacity. 
@@ -414,24 +404,40 @@ For the growth part of dead wood, $m$ is the decay rate of living biomass (the r
 
 Now, for the fire term, $\beta$ is the coefficient that represent the fact that $W$ burn easier than $N$. $\delta_F(t)$ and $s(t)$ represent respectively the fire occurrence and the severity of an eventual fire at the time $t$. 
 
-Finally, similar to $\beta$, $\alpha$ represent the fact that $W$ burn easier than $N$. Both have to be bigger than $1$.
+Finally, similar to $\beta$, the parameter $\alpha$ represents the relative sensitivity of the fire strength to W. Both have to be bigger than $1$.
 
+
+
+
+\paragraph{} % assumption
+The major assumption of the model is that fire frequency is independent of $W$, it will be argued in the discussion \todo{} that this does not have significantly impact the results presented.
+
+Another assumption is that fire need ($W$) to burn. In other words, when $W=0$, fires cannot take place. It is based on the fact that fire are manly driven by fuel \cite{schoennagel_interaction_2004} \cite{stephens_effects_2012} \cite{syphard_comparing_2011} \cite{safford_effects_2009} \cite{stephens_experimental_2005}.
 
 
 
 
 \paragraph{}
-In order to simplify the study of the model, we adimensionnalise the system. We have anymore only 7 parameter (\hyperref[adim]{calculus in appendix}). The adimensionnalise system is the following :
+In order to simplify the study of the model, we adimensionnalise the system. We now have 7 parameters (\hyperref[adim]{see derivation in appendix}). The adimensionnalise system is the following :
 
-\[ % adim model
-\left\lbrace
-\begin{array}{rcl}
+
+
+\begin{eqnarray}
 \frac{dN}{dt} & = & N(1-N)(N-A) - \delta_F(t)s(t)(N+\alpha W) \\
-\\
-\frac{dW}{dt} & = & mN -dW - \beta\delta_F(t)s(t)(N+\alpha W) \\
-\end{array}
-\right.
-\]
+\frac{dW}{dt} & = & mN -dW - \beta\delta_F(t)s(t)(N+\alpha W) 
+\end{eqnarray}
+
+
+%\[ % adim model
+%\left\lbrace
+%\begin{array}{rcl}
+%\frac{dN}{dt} & = & N(1-N)(N-A) - \delta_F(t)s(t)(N+\alpha W) \\
+%\\
+%\frac{dW}{dt} & = & mN -dW - \beta\delta_F(t)s(t)(N+\alpha W) \\
+%\end{array}
+%\]
+
+
 
 %\paragraph{estimation of "reasonable" coefficient for this model%, sometimes easier to find "reasonable" coefficient, $K$ not anymore present, but not always ...
 %} \todo{}
@@ -450,7 +456,7 @@ An analytic expression is given, mainly based on the assumptions that frequency 
 \left\lbrace
 \begin{array}{rcl}
 N^{av} & = & \frac{1+a+\sqrt{(1-a)^2-4\gamma}}{2} \\
-W^* & = & \epsilon N^* \\
+W^{av} & = & \epsilon N^{av} \\
 \end{array}
 \right.
 \]
@@ -466,7 +472,7 @@ With,
 \]
 
 \paragraph{}
-We can check below that average are well estimated, even for low value of frequency.
+As shown in Fig. 2, this estimation works well, even for low value of frequency.
 
 \begin{figure}[h!]
 \centering
@@ -504,13 +510,15 @@ One of the main interest of forest management is to avoid collapse. That is why 
 \end{figure}
 
 
-\paragraph{}
+\paragraph{} \todo{ - The sentence "This upgrade is thus independent of the time study choose" is quite problematic. First, I don't see how this is an "upgrade". More importantly, it is not really independent, as there is an aspect of history here that is not trivial (that is, if you stop with high or low values of N and/or W, it matters, potentially quite a bit, to the collapse probability). Also, do you actually use this "collapse probability per time unit"? I think you should restructure this whole paragraph, starting by saying something like "We calculate the probability by using different simulations..."}
 Measuring collapse probability need to run several simulation to approximate it. However, it will depend on the time study used. Indeed, more the time study is long, the more is the risk to collapse. Even if it could be enough to used always the same time study, we present an improvement of this measure : probability to collapse by time unit. This upgrade is thus independent of the time study choose (details in \hyperref[proba_per_time_unit]{appendix}).
 
 
 
 \paragraph{}
-Another measure of the system is variability. It could be useful to consider variability because forest management traditionally tends to lock the variability \cite{bergeron_natural_2002} of the biomass. Another argument is that variability could be used to predict a critical change in the system, here a collapse, \cite{karr_population_1982} \cite{pimm_risk_1988} \cite{bengtsson_predicting_1995}. However other studies have shown no results \cite{bengtsson_interspecific_1989} \cite{pollard_extinction_1992} or a negative relationship \cite{lima_extinction_1996}.
+Variability is the variance of a time series, where in this model we focus on the living biomass N, as it is of most interest. It could be useful to consider variability because forest management traditionally tends to lock the variability \cite{bergeron_natural_2002} of the biomass. Another argument is that variability could be used to predict a critical change in the system, here a collapse, \cite{karr_population_1982} \cite{pimm_risk_1988} \cite{bengtsson_predicting_1995}. However other studies have shown no results \cite{bengtsson_interspecific_1989} \cite{pollard_extinction_1992} or a negative relationship \cite{lima_extinction_1996}.
+
+
 
 
 
@@ -595,7 +603,7 @@ variability = f\frac{\lambda^2}{U}
 
 
 
-\todo{figure for just this estimation of variability}
+%\todo{figure for just this estimation of variability}
 \begin{figure}[h!]
 \centering
 \includegraphics[width=10.cm]{variability_good.png}
@@ -610,10 +618,10 @@ Generally, when the total severity of the fire is high, the accuracy of the esti
 
 Other estimation of variability have been implement and are presented in \hyperref[variability_estimation_other]{appendix}.
 
-\todo{make agian the plot with just the used estimation (just the "good" ones)}
+%\todo{make agian the plot with just the used estimation (just the "good" ones)}
 \begin{figure}[h!]
 \centering
-\includegraphics[width=10.cm]{variability_2.png}
+\includegraphics[width=10.cm]{variability_bad.png}
 \caption{Variability estimation}
 %\label{fig:universe}
 \end{figure}
@@ -639,11 +647,11 @@ Here again, the estimation work generally quite well, but the correctness depend
 More generally, even if the maximum of the collapse probability is under estimated, the location of the peak is quite well predicted. As previously, the biases increase with the severity of the fire.
 
 
-\todo{do again the plot with a the left work well, and not very well for the right.}
+%\todo{do again the plot with a the left work well, and not very well for the right.}
 \begin{figure}[h!]
 \centering
-\includegraphics[width=6.cm]{cp.png}
-\includegraphics[width=6.cm]{cp_threshold.png}
+\includegraphics[width=6.cm]{cp_good.png}
+\includegraphics[width=6.cm]{cp_bad.png}
 \caption{Cp estimation}
 %\label{fig:universe}
 \end{figure}
@@ -1299,6 +1307,17 @@ It can be \hyperref[drought_increase]{demonstrated} that increasing this $4$ par
 \paragraph{}
 fuel removal, very efficient to decrease cp
 
+\paragraph{}
+
+We consider only density biomass and do evaluate the spatial distribution of both density and fire severity \cite{bergeron_natural_2002}.
+
+
+
+\paragraph{}
+We consider only one type of forest. Indeed, it have been argued that different type of forest fire could be differentiate (crown fires, light surface fires ... ) \cite{heinselman1981fire}.
+% fire severity proportional to the density of $N$ and $\alpha W$ 
+
+
 \begin{itemize}
     \item recall objective
     \item general limitation (of the model, for example)
@@ -1529,8 +1548,14 @@ We have finally the following system,
 \newpage
 \section{Simple results}
 
+
+
 %\paragraph{Remark} % equilibrium
 \paragraph{} % equilibrium
+\todo{COMMENTS : - Before the simple analysis, you say "we only consider growth terms.", but you also consider decay and such. You can say you look at the continuous dynamics without the effect of fires. Or something else similar.
+- I don't understand this sentence "Also, the figure below give an example for a well choose set of parameters of a time series.". What is chosen? You can instead write something like "We demonstrate the dynamics of this model in figure 2."
+- I was confused by the mysterious short paragraph "We can remark that the growth of the system is continuous and deterministic. However, the perturbation (fire) are discrete and stochastic. The implementation to solve the system need thus to take care of this, more details in appendix."
+- I am not sure what the purpose is of the end of page 14 and beginning of page 15. It does not seem to be necessary to understand other parts in the methods section, as far as I can tell. Maybe put this in the results section? Also, I don't know the value of the phase-portrait (fig.3) - you don't explain it in a legend, or really mention it in the main text. }
 To help understand the dynamics of the model used, we give some simple analytic result. to do this, we only consider growth terms.
 
 \[ % adim model
@@ -1543,7 +1568,6 @@ To help understand the dynamics of the model used, we give some simple analytic 
 \right.
 \]
 
-\todo[color = purple]{reflechir à ce que je met en annexes} 
 
 \paragraph{}
 We have thus 3 equilibrium, 2 stable $(0, 0)$ and $(1, \frac{m}{d})$ and one unstable $(A, \frac{mA}{d})$ (\hyperref[equi]{calculus in appendix}).
