@@ -454,6 +454,8 @@ To help understand the dynamics of the model used, we give some simple analytic 
 \right.
 \]
 
+\todo[color = purple]{reflechir à ce que je met en annexes} 
+
 \paragraph{}
 We have thus 3 equilibrium, 2 stable $(0, 0)$ and $(1, \frac{m}{d})$ and one unstable $(A, \frac{mA}{d})$ (\hyperref[equi]{calculus in appendix}).
 
@@ -539,15 +541,15 @@ We can check below that average are well estimated, even for low value of freque
 \paragraph{}
 One of the main interest of forest management is to avoid collapse. That is why we study the collapse probability of the system. In the present model, a collapse is report when the density value of living biomass go below the allee thresholds, indeed, when it happens, the dynamics of both $N$ and $W$ converge to $0$.
 
-\todo{example when after the collapse, it remains $N$ and $W$, which keep decreasing, and strength the time series (ft = 300)} % here we can think it will always going to 0 because only of the fire.
+%\todo{example when after the collapse, it remains $N$ and $W$, which keep decreasing, and strength the time series (ft = 300)} % here we can think it will always going to 0 because only of the fire.
 
 
 \newpage
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=10.cm]{time_series_cp_1.png}
-\caption{Average : $N^{av}$ and $W^{av}$}
+\includegraphics[width=12.cm]{time_series_cp_1.png}
+\caption{Collapse}
 %\label{fig:universe}
 \end{figure}
 
@@ -556,20 +558,10 @@ One of the main interest of forest management is to avoid collapse. That is why 
 Measuring collapse probability need to run several simulation to approximate it. However, it will depend on the time study used. Indeed, more the time study is long, the more is the risk to collapse. Even if it could be enough to used always the same time study, we present an improvement of this measure : probability to collapse by time unit. This upgrade is thus independent of the time study choose (details in \hyperref[proba_per_time_unit]{appendix}).
 
 
-\paragraph{} % why variability ?
-\todo{why variability ?}
-\begin{itemize}
-    \item lock dynamics (\todo{I have 2 papers})
-    \item because it could give an indication of collapse 
-    \begin{itemize}
-        \item tests of the predicted effect of population variability (PV) have yielded variable, controversial results. Several studies provide apparent support for the predicted positive relationship (Karr 1982;Pimm et al. 1988; Forney \& Gilpin 1989; Bengtsson \& Milbrink 1995). Other studies reveal no significant relationship (Bengtsson 1989; Pollard \& Yates 1992) or provide evidence for a negative relationship (Schoener 1991; Schoener \& Spiller 1992; Lima et al. 1996; for discussions of the statistical validity of several of these studies see Diamond \& Pimm 1993; Pimm 1993; Tracy \& George1993; Gaston \& McArdle 1994).
-        
-        numerous theoretical treatments besides those described above (MacArthur \& Wilson 1967; MacArthur 1972; Richter-Dyn \& Goel 1972; Leigh 1975, 1981; Belovsky 1987; Goodman 1987) yield the same prediction: increased population variability leads to increased extinction risk.
-        
-        \todo{Some authors (MacArthur 1972; Diamond 1984; Pimm et al. 1988) have argued that the rate  of extinction should be directly related to population variability. Al- though intuitively appealing, this relationship may not hold, especially when population density and absolute population variability are positively correlated (Tracy and George 1992; Schoener and Spiller 1992) \cite{rutledge1976ecological}}
-        \todo{ (N),Population size of mature individuals (and trend in population size, were clearly the best predictors of extinction risk) \cite{ogrady_what_2004}}
-    \end{itemize}
-\end{itemize}
+
+\paragraph{}
+Another measure of the system is variability. It could be useful to consider variability because forest management traditionally tends to lock the variability \cite{bergeron_natural_2002} of the biomass. Another argument is that variability could be used to predict a critical change in the system, here a collapse, \cite{karr_population_1982} \cite{pimm_risk_1988} \cite{bengtsson_predicting_1995}. However other studies have shown no results \cite{bengtsson_interspecific_1989} \cite{pollard_extinction_1992} or a negative relationship \cite{lima_extinction_1996}.
+
 
 
 \paragraph{}
@@ -578,8 +570,8 @@ Variability is defined like the variance when a collapse has not occur yet. Inde
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=10.cm]{time_series_sd_1.png}
-\caption{Average : $N^{av}$ and $W^{av}$}
+\includegraphics[width=12.cm]{time_series_sd_1.png}
+\caption{Variability}
 %\label{fig:universe}
 \end{figure}
 
@@ -588,24 +580,47 @@ Variability is defined like the variance when a collapse has not occur yet. Inde
 \paragraph{}
 In practice, we have to make compromise to decrease different bias. Even if the dynamics is initialise close to the average approximation, it is safer to not take into account the first time of the time series to compute collapse probability (thus we do not consider the first $10\%$ of the time series). Also, as explain previously, it make no sens to compute variability after a collapse occurs, but in order to use the same time to measure variability, we restrict at the second $10\%$ of the time series. Indeed, the bias of time series not used because they collapse to soon is here quite low (\hyperref[algo_variability]{algorithm in appendix}). Other way to measure variability have been implemented and could be found in \hyperref[other_variability]{appendix}.
 
-\todo{same plot as previously but with variability between $10\%$ and $20\%$}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=12.cm]{time_series_sd_2.png}
+\caption{More robust variability}
+%\label{fig:universe}
+\end{figure}
 
 
 \paragraph{}
 A similar measure to variability is the coefficient of variability. Defined as the variability over the mean. Indeed, a good measure of variability will be independent of the mean abundance if the dynamics are the same, but will not be independent if the dynamics change with mean abundance \cite{gaston_measurement_1993}\cite{noauthor_temporal_1994}
 
 
+
+
+
+
+
 \paragraph{}
-The main problem is : bias when collapse \todo{Variability analysis should be performed on data that are free from artefact \cite{seely2004complex} }, thus (to decoupled this two phenomenon) : 
-\begin{itemize}
-    \item use the same simulation
-    \item same fire \todo{More time means more variation \cite{lawton1988more} }
-    \item same time
-    \item \paragraph{}
-        Instead of doing a lot of simulation and average the effect, used only one simulation (only one fire). One problem is that when we change the frequency, we need to choose between used the same time scale, and so not take the same fire (it will truncated) or used the same fire and so no have the same time scale. Because both are relevant, both are computed. 
-        
-        We can remark that "same fire" tend to be more robust in the sens that it is more smooth.
-\end{itemize}
+Different technique have been used to minimise the bias to variability estimation, due to collapse. However the bias persist \cite{seely2004complex}, that is why instead of doing a lot of simulation and average the effect, we propose to used only one simulation (only one fire). One problem is that when we change the frequency, we need to choose between used the same time scale, and so not take the same fire (it will truncated) or used the same fire and so no have the same time scale. Because both are relevant, both are computed. 
+
+
+%Variability analysis should be performed on data that are free from artefact \cite{seely2004complex} 
+
+%\todo{More time means more variation \cite{lawton1988more} }
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=12.cm]{same_2.png}
+\caption{Same fire randomisation for different frequency and final time corresponding}
+%\label{fig:universe}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=12.cm]{same_1.png}
+\caption{Same fire randomisation for different frequency and same final time (the first fire are the same, but the last are not necessarily present)}
+%\label{fig:universe}
+\end{figure}
+
 
 
 \subsubsection{Estimation}
@@ -1232,6 +1247,11 @@ Depending on the parameter set choose, the dynamics is different and therefore, 
 \end{center}
 \caption{\label{fig:temp}From left to right : Class linear, counter-clockwise and clockwise} % or category or type, kinds
 \end{figure}
+
+
+
+\todo{plot in results the graph with var and cp increasing with same fire and same time, to validate the results.}
+
 
 
 
