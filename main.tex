@@ -1244,6 +1244,24 @@ However, if in the case "AB" variability and collapse probability are similar, f
 \newpage
 \subsubsection{Drought}
 
+freq + s \cite{fernandes_fire-smart_2013}
+\cite{fairman_too_2016}
+
+freq decreasing \cite{bergeron_predicting_nodate}
+
+\paragraph{}
+f + s \\
+Variations in fire regimes are primarily related to fluctuations in available
+moisture and dominance by either woody or herbaceous plant cover. Fire in
+woodland communities (dry climates) is limited by growth of herbaceous fuels
+(biomass), whereas in forests (wet climates) limitation is by fuel moisture (availability
+to burn) and fire weather. Increasing dryness in woodland communities will
+decrease potential fire frequency, while the opposite applies in forests. In the
+tropics, both forms of limitation are weak due to the annual wet/dry climate. Future
+change may therefore be constrained.\cite{bradstock_biogeographic_2010}
+
+
+
 
 \paragraph{}
 We now focus on the drought scenarios. This is a current subject (a lot of recent papers about this). This is mainly a consequence of extreme weather as a result of climate changed. It have been shown that drought increase the frequency, the severity and the size of fire. We link this scenarios to the parameters $f, s, \alpha$ and $\beta$ of our model. Also, because fuel are drier, parameters $\alpha$ and $\beta$ are higher. In brief, the consequences of climate warming is formalised by a higher values of both $f, s, \alpha$ and $\beta$.
@@ -1268,6 +1286,9 @@ It can be \hyperref[drought_increase]{demonstrated} that increasing this $4$ par
 \caption{\label{fig:temp}Left : return to equilibrium / never, Right : equivalent / never}
 \end{figure}
 
+
+\newpage
+
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=6cm]{results/drought/return_moderate.png}
@@ -1286,7 +1307,7 @@ It can be \hyperref[drought_increase]{demonstrated} that increasing this $4$ par
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=10cm]{results/drought/fuel_low.png}
+\includegraphics[width=9cm]{results/drought/fuel_low.png}
 \end{center}
 \caption{\label{fig:temp}Fuel low}
 \end{figure}
@@ -1298,83 +1319,19 @@ It can be \hyperref[drought_increase]{demonstrated} that increasing this $4$ par
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Discussion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \newpage
 \section{Discussion}
-\todo{Try to not make repetition (or not too much)}
-
-\todo[color = yellow]{parler du fait que les measures ne sont pas toujours bien corréllés, pas example pour le dynamical case "accu - unlikely"}
-
-\paragraph{}
-fuel removal, very efficient to decrease cp
 
 \paragraph{}
 
-We consider only density biomass and do evaluate the spatial distribution of both density and fire severity \cite{bergeron_natural_2002}.
+brief summary,  recall objective ...
 
-
-
-\paragraph{}
-We consider only one type of forest. Indeed, it have been argued that different type of forest fire could be differentiate (crown fires, light surface fires ... ) \cite{heinselman1981fire}.
-% fire severity proportional to the density of $N$ and $\alpha W$ 
-
-
-\begin{itemize}
-    \item recall objective
-    \item general limitation (of the model, for example)
-    \item loop
-    \begin{itemize}
-        \item summarise results (what that means ?)
-        \item implications (why that matters ?)
-        \begin{itemize}
-            \item usually, we have a "correlation" between measures
-            \item it can be a problem to collapse without seeing "signal"
-        \end{itemize}
-        \item limitations specific to that
-        \begin{itemize}
-            \item numerically, bias when computing variability (because of collapse) 
-            \item but, with "same fire" we have not a collapse
-        \end{itemize}
-        \item relate to papers
-        \begin{itemize}
-            \item \cite{brock_variance_2006}
-            \item \cite{carpenter2006rising}
-            \item \cite{scheffer2015generic}
-            \item \cite{dakos_robustness_2012}
-            \item \cite{biggs_turning_2009}
-        \end{itemize}
-    \end{itemize}
-    \item fuel removal
-    \begin{itemize}
-        \item summarise results (what that means ?)
-        \item implications (why that matters ?)
-        \item limitations specific to that
-        \item relate to papers
-        \begin{itemize}
-            \item \cite{schoennagel_interaction_2004}
-            \item \cite{agee_basic_2005}
-            \item \cite{stephens_effects_2012}
-            \item \cite{fernandes}
-        \end{itemize}
-    \end{itemize}
-    \item drought
-    \begin{itemize}
-        \item summarise results (what that means ?)
-        \item implications (why that matters ?)
-        \item limitations specific to that
-        \item relate to papers
-    \end{itemize}
-\end{itemize}
-
-
-
-
-
-
-\subsection{Model}
-
+\subsection{Limitation}
 
 \paragraph{}
-We assume that the frequency of the fire is independent of the density biomass. It can be argued that fuels have an influence on both severity and frequency  of fires \cite{schoennagel_interaction_2004}. However, adding this feedback (from $W$ to the frequency) will surely tends to decrease the density biomass of $W$ (because, when $W$ is higher, the frequency is higher too, and so the dynamics keep a low value of $W$). In other word, this should to have the "management fuel" scenarios more often
+We assume that the frequency of the fire is independent of the density biomass. It can be argued that fuels have an influence on both severity and frequency  of fires \cite{schoennagel_interaction_2004}. However, adding this feedback (from $W$ to the frequency) will surely tends to decrease the density biomass of $W$ (because, when $W$ is higher, the frequency is higher too, and so the dynamics keep a low value of $W$). In other word, this should to have the "management fuel" scenarios more often.
 
 Also, we only consider one kind of death wood, this can be details in several type (coarse woody debris, fine woody debris, below ground ...) \cite{russell_quantifying_2015}. In the literature, the data are rarely for all the wood, and, some wood burned easier than other. 
 
@@ -1382,40 +1339,46 @@ Moreover, in practice we can distinguish several fire regime (e.g., crown fires,
 
 Less relevant, we only consider density biomass. However, the spatial distribution can affect fires propagation (especially for small fires). For example, a burned area can create an obstacle when another fire occur \cite{bergeron_natural_2002}.
 
-Even if fire is the main perturbation of the system, other disturbances can be relevant, like mechanical thinning \cite{liu_analyzing_2010}\cite{schoennagel_interaction_2004}\cite{wimberly_assessing_2009}.
-
-
-\subsection{Link literature model}
-
-\paragraph{}
 Data varies greatly and also depend on several variable (type of forest, localisation ... )
 
-
-\subsection{Technicality about variability}
-
-\paragraph{}
-Because the collapse of the system affect the variability of this system, it is difficult to have robust computation of the variability. None of the different variant of the variability presented above are perfect which is biased. "Variability all" compute the variance even if the system collapse, which tend to decrease a lot the variability. 
-    
-Also, "variability only" who compute the variability only when the system do not collapse, is biased because the variability could be not be the same when the system will collapse or not. (We do not catch the link between variability and the collapse off the system). And if the system always collapse (which can be the case, especially for long time study) we do not have an estimation of the variability. 
-
-On the other hand, "variability until" used all the simulation, but the time of the study is never the same.
-
-More generally, because collapse can occur at different time (or never) it is difficult to have a robust computation of the variability.
+\todo{talk again about the bias from cp to variability ??} 
 
 
 
-\subsection{Technicality about collapse probability}
+
+\subsection{ ... link with literature}
+
 
 \begin{itemize}
-    \item collapse probability depend of the time of the study
-    \item problem when cp is too high, to have enough data on the variability
-    \item also, problem to have a measure who depend on a numerical parameter
-    \item solution : used collapse probability per time units
+    \item stability ?
+    \item collapse indicators
+        \begin{itemize}
+            \item usually, we have a "correlation" between measures
+            \item it can be a problem to collapse without seeing "signal"
+            \item numerically, bias when computing variability but, with "same fire" we have not a collapse (because of collapse) (we have already talk about this) 
+            \item \cite{brock_variance_2006}
+            \item \cite{carpenter2006rising}
+            \item \cite{scheffer2015generic}
+            \item \cite{dakos_robustness_2012}
+            \item \cite{biggs_turning_2009}
+        \end{itemize}
+    \item management
+        \begin{itemize}
+            \item frequency : USA example (rocky mountains)
+            \item $d$ fuel removals : lot of papers (fuel removal, very efficient to decrease cp)
+            \begin{itemize}
+                \item \cite{schoennagel_interaction_2004}
+                \item \cite{agee_basic_2005}
+                \item \cite{stephens_effects_2012}
+                \item \cite{fernandes_prescribed_2013}
+                \item mechanical thinning
+                \begin{itemize}
+                    \item \cite{liu_analyzing_2010} \cite{schoennagel_interaction_2004} \cite{wimberly_assessing_2009}
+                \end{itemize}
+            \end{itemize}
+        \end{itemize}
+    \item last words ...
 \end{itemize}
-
-
-
-\todo[color=purple]{collapse indicators ?}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
