@@ -1330,44 +1330,50 @@ It can be \hyperref[drought_increase]{demonstrated} that increasing this $4$ par
 \newpage
 \section{Discussion}
 
-\paragraph{}
 
-brief summary,  recall objective ...
+\paragraph{} % brief summary,  recall objective ...
+We have seen that us is possible to distinguish several types of dynamics. For each ones, measures (variability and collapse probability) do not react similarly when frequency increase. This two measures are sometimes dissimilar, they do not react correspondingly. This could be a problem if we want to use variability as a tool to stabilize the dynamics, or as indicators of critical transitions.
+
+
+
+
 
 \subsection{Limitation}
 
 \paragraph{}
-We assume that the frequency of the fire is independent of the density biomass. It can be argued that fuels have an influence on both severity and frequency  of fires \citep{schoennagel_interaction_2004}. However, adding this feedback (from $W$ to the frequency) will surely tends to decrease the density biomass of $W$ (because, when $W$ is higher, the frequency is higher too, and so the dynamics keep a low value of $W$). In other word, this should to have the "management fuel" scenarios more often.
+We assume that the frequency of the fire is independent of the density biomass. It can be argued that fuels have an influence on both severity and frequency  of fires \citep{schoennagel_interaction_2004}. However, adding this feedback (from $W$ to the frequency) will surely tends to decrease the density biomass of $W$ (because, when $W$ is higher, the frequency is higher too, and so the dynamics keep a low value of $W$). In other word, this should have the \textit{depletion} scenarios more often.
 
-Also, we only consider one kind of death wood, this can be details in several type (coarse woody debris, fine woody debris, below ground ...) \citep{russell_quantifying_2015}. In the literature, the data are rarely for all the wood, and, some wood burned easier than other. 
+Also, we only consider one kind of death wood, this can be details in several type (coarse woody debris, fine woody debris, below ground ...) \citep{russell_quantifying_2015}. In the literature, the data are rarely for all the wood, and, some wood burned easier than other. Moreover, in practice we can distinguish several fire regime (e.g., crown fires, severe surface fires, and light surface fires) \citep{reichle_fire_1981}. All of this different fires disturbed differently the dry wood. So the dynamic can be modelled in a more complex ways.
 
-Moreover, in practice we can distinguish several fire regime (e.g., crown fires, severe surface fires, and light surface fires) \citep{reichle_fire_1981}. All of this different fires disturbed differently the dry wood. So the dynamic can be modelled in a more complex ways.
+Less relevant, we only consider density biomass. However, the spatial distribution can affect fires propagation (especially for small fires) \citep{beaty_spatial_2002}. For example, a burned area can create an obstacle when another fire occur \citep{bergeron_natural_2002, ager_modeling_2007}. It is sometimes used as a management tools with the name \textit{fuel breaks} to prevent big fires, manager create wall of no fuel to stop the propagation of fires \citep{syphard_comparing_2011, agee_use_2000}
 
-Less relevant, we only consider density biomass. However, the spatial distribution can affect fires propagation (especially for small fires). For example, a burned area can create an obstacle when another fire occur \citep{bergeron_natural_2002}.
+%Data varies greatly and also depend on several variable (type of forest, localisation ... )
 
-Data varies greatly and also depend on several variable (type of forest, localisation ... )
+%\todo{talk again about the bias from cp to variability ??} 
 
-\todo{talk again about the bias from cp to variability ??} 
+
+\subsection{Collapse indicators}
+
+\paragraph{}
+One of the most used indicators of critical change (a sudden change from one state to another one) is \textit{variability} \citep{brock_variance_2006, carpenter2006rising, scheffer2015generic, dakos_robustness_2012, biggs_turning_2009}. In ecology it is useful to be able to anticipated an abrupt change in order to prevent it or at least to decrease it. They are others indicators of critical change \cite{scheffer_generic_2015} and \cite{dakos_methods_2012} give a review of the different early warnings signal. 
+
+In the present model, the critical change is the collapse, it can be noticed that this one is irreversible. Methods using \textit{flickering} (the repeated change of state) could not be used directly \citep{carr_modeling_2012, wang_flickering_2012, dakos_flickering_2013}. The other phenomena mainly used to predict critical change is \textit{critical slowing down} : slowdown of the dynamics due to the proximity with the critical change \citep{dakos_critical_2014, dakos_slowing_nodate, scheffer_anticipating_2012}. A lot of study used this principles to develop early warning signal in different field such as psychology \citep{van_de_leemput_critical_2014} climate change \citep{lenton_early_2012} ecology \citep{chisholm_critical_2009, gandhi_critical_1998} engineering \citep{ren_early_2015} or finance \citep{diks_critical_2018}.
+
+Here, we show that variability is sometimes could sometimes be good indicators of the collapse of the system. For example for the two dynamical cases \textit{accumulation - possible collapse} and \textit{accumulation - inevitable collapse}. However, for the dynamical case \textit{accumulate - unlikely collapse}, variability increase without an increasing of the collapse probability. More generally, figures 32 \todo{} show that for different set of parameters is is possible to have different connection between the two measures. Especially, one measures could increase (respectively decrease) before the others increase (respectively decrease). Visually, the loop turn in two different directions (most of the time the direction is counter clock wise) he collapse probability increase and reach a peak before the variability.
+
+
+\subsection{Management}
+
+\paragraph{}
 
 
 
 
 \subsection{ ... link with literature}
 
-
 \begin{itemize}
     \item stability ?
-    \item collapse indicators
-        \begin{itemize}
-            \item usually, we have a "correlation" between measures
-            \item it can be a problem to collapse without seeing "signal"
-            \item numerically, bias when computing variability but, with "same fire" we have not a collapse (because of collapse) (we have already talk about this) 
-            \item \citep{brock_variance_2006}
-            \item \citep{carpenter2006rising}
-            \item \citep{scheffer2015generic}
-            \item \citep{dakos_robustness_2012}
-            \item \citep{biggs_turning_2009}
-        \end{itemize}
+
     \item management
         \begin{itemize}
             \item frequency : USA example (rocky mountains)
