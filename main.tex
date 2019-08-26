@@ -374,7 +374,7 @@ We consider a model of forest growth undergoing repeated fires, N represents the
 
 The living biomass follow a logistic growth \citep{tsoularis2002analysis, jensen1975comparison} with an allee effect \citep{stephens1999allee, amarasekare1998allee}, it could be notice that under the value of this threshold, the system collapse. For the second equation, the evolution of the dead wood is proportional to the density of $N$ and decay with time \citep{kahl_wood_2017, shorohova_stump_2012, christensen_estimation_1977, delaney_quantity_1998}.% \citep{barbosa_decomposition_2017} \citep{fravolini_quantifying_2018} \citep{wilson_dynamics_2005} \citep{zielonka_dynamics_nodate}. %% sinon ça fait trop de citation
 
-Fire is modelled by discrete events and affected both $N$ and $W$, with a stronger effect for $W$ (the dead wood burn easier than $N$)\todo{find ref}. The occurrence of a fire is register in the sequence $F$, for a given time, if $t\in F$ a fire appears. The severity of the fire is assumed to follow an exponential law of average $s$. Finally, the severity (i.e. amount of living and dry biomass burned), is proportional to the density biomass $N$ and $W$ with stronger sensitivity to $W$ \citep{martinson_fuel_2013, safford_effects_2009, lecomte_effects_2006}. The model is given by two equations
+Fire is modelled by discrete events and affected both $N$ and $W$, with a stronger effect for $W$ (the dead wood burn easier than $N$ \citep{brown1985predicting})\todo{find ref}. The occurrence of a fire is register in the sequence $F$, for a given time, if $t\in F$ a fire appears. The severity of the fire is assumed to follow an exponential law of average $s$. Finally, the severity (i.e. amount of living and dry biomass burned), is proportional to the density biomass $N$ and $W$ with stronger sensitivity to $W$ \citep{martinson_fuel_2013, safford_effects_2009, lecomte_effects_2006}. The model is given by two equations
 \paragraph{}
 
 \[
@@ -387,7 +387,7 @@ Fire is modelled by discrete events and affected both $N$ and $W$, with a strong
 \right.
 \]
 
-\todo{talk more about possible values, or anything else that seems relevant}
+
 \paragraph{} % parameter 
 %\todo{useful to give value ? (and justify with paper) it is not that simple, it could be a mess ...}
 %\todo{all value at least positive non null, and m lower than max(dn / dt)}
@@ -395,9 +395,9 @@ The first parameter $g$ is the grow rate of the living biomass. $K$ is the fores
 
 The allee effect threshold $A$ represent the minimum quantity of living biomass in order to survive. In other words, if the dynamics of $N$ go below $A$, the system collapse. The possible value of $A$ are between $0$ and $1$, but in practice $A$ take low value, typically between $0.02$ and $0.2$.
 
-For the growth part of dead wood, $m$ is the decay rate of living biomass (the rate of conversion from $N$ to $W$) and $d$ the decay rate of $W$ itself.
+For the growth part of dead wood, $m$ is the decay rate of living biomass (the rate of conversion from $N$ to $W$, we need to have $g$ higher than $m$) and $d$ the decay rate of $W$ itself. 
 
-Now, for the fire term, $\beta$ is the coefficient that represent the fact that $W$ burn easier than $N$. $\delta_F(t)$ and $s(t)$ represent respectively the fire occurrence and the severity of an eventual fire at the time $t$. 
+Now, for the fire term, $\beta$ is the coefficient that represent the fact that $W$ burn easier than $N$. $\delta_F(t)$ and $s(t)$ represent respectively the fire occurrence and the severity of an eventual fire at the time $t$. For a given fire, the strength follow an exponential law \citep{gauthier_les_2001, cyr_forest_2009}.
 
 Finally, similar to $\beta$, the parameter $\alpha$ represents the relative sensitivity of the fire strength to W. Both have to be bigger than $1$.
 
@@ -405,7 +405,7 @@ Finally, similar to $\beta$, the parameter $\alpha$ represents the relative sens
 
 
 \paragraph{} % assumption
-The major assumption of the model is that fire frequency is independent of $W$, it will be argued in the discussion \todo{} that this does not have significantly impact the results presented.
+The major assumption of the model is that fire frequency is independent of $W$, it will be argued in the \hyperref[discussion_frequency_ass]{discussion} that this does not have significantly impact the results presented.
 
 Another assumption is that fire need ($W$) to burn. In other words, when $W=0$, fires cannot take place. It is based on the fact that fire are manly driven by fuel \citep{schoennagel_interaction_2004, stephens_effects_2012, syphard_comparing_2011, safford_effects_2009, stephens_experimental_2005}.
 
@@ -416,11 +416,13 @@ Another assumption is that fire need ($W$) to burn. In other words, when $W=0$, 
 In order to simplify the study of the model, we adimensionnalise the system. We now have 7 parameters (\hyperref[adim]{see derivation in appendix}). The adimensionnalise system is the following :
 
 
-
 \begin{eqnarray}
 \frac{dN}{dt} & = & N(1-N)(N-A) - \delta_F(t)s(t)(N+\alpha W) \\
 \frac{dW}{dt} & = & mN -dW - \beta\delta_F(t)s(t)(N+\alpha W) 
 \end{eqnarray}
+
+\paragraph{}
+We can remark that we have a bi stable system. With the origin for the first stable point. Another remark, the fraction $\frac{m}{d}$ is the ratio of dead wood over alive wood, when the fire is not present.
 
 
 %\[ % adim model
@@ -490,8 +492,7 @@ As shown in Fig. 2, this estimation works well, even for low value of frequency.
 \subsubsection{Definition}
 \label{collapse_probability}
 \paragraph{}
-One of the main interest of forest management is to avoid collapse. That is why we study the collapse probability of the system. In the present model, a collapse is report when the density value of living biomass go below the allee thresholds, indeed, when it happens, the dynamics of both $N$ and $W$ converge to $0$.
-
+One of the main interest of forest management is to avoid collapse. That is why we study the collapse probability of the system. In the present model, a collapse is report when the density value of living biomass go below the allee thresholds, indeed, when it happens, the dynamics of both $N$ and $W$ converge to $0$. Measuring collapse probability need to run several simulation to approximate it.
 %\todo{example when after the collapse, it remains $N$ and $W$, which keep decreasing, and strength the time series (ft = 300)} % here we can think it will always going to 0 because only of the fire.
 
 
@@ -505,8 +506,8 @@ One of the main interest of forest management is to avoid collapse. That is why 
 \end{figure}
 
 
-\paragraph{} \todo{ - The sentence "This upgrade is thus independent of the time study choose" is quite problematic. First, I don't see how this is an "upgrade". More importantly, it is not really independent, as there is an aspect of history here that is not trivial (that is, if you stop with high or low values of N and/or W, it matters, potentially quite a bit, to the collapse probability). Also, do you actually use this "collapse probability per time unit"? I think you should restructure this whole paragraph, starting by saying something like "We calculate the probability by using different simulations..."}
-Measuring collapse probability need to run several simulation to approximate it. However, it will depend on the time study used. Indeed, more the time study is long, the more is the risk to collapse. Even if it could be enough to used always the same time study, we present an improvement of this measure : probability to collapse by time unit. This upgrade is thus independent of the time study choose (details in \hyperref[proba_per_time_unit]{appendix}).
+
+%However, it will depend on the time study used. Indeed, more the time study is long, the more is the risk to collapse. Even if it could be enough to used always the same time study, we present an improvement of this measure : probability to collapse by time unit. This upgrade is thus independent of the time study choose (details in \hyperref[proba_per_time_unit]{appendix}).
 
 
 \label{variability}
@@ -1337,6 +1338,7 @@ We have seen that us is possible to distinguish several types of dynamics. For e
 \subsection{Limitation}
 
 \paragraph{}
+\label{discussion_frequency_ass}
 We assume that the frequency of the fire is independent of the density biomass. It can be argued that fuels have an influence on both severity and frequency  of fires \citep{schoennagel_interaction_2004}. However, adding this feedback (from $W$ to the frequency) will surely tends to decrease the density biomass of $W$ (because, when $W$ is higher, the frequency is higher too, and so the dynamics keep a low value of $W$). In other word, this should have the \textit{depletion} scenarios more often.
 
 Also, we only consider one kind of death wood, this can be details in several type (coarse woody debris, fine woody debris, below ground ...) \citep{russell_quantifying_2015}. In the literature, the data are rarely for all the wood, and, some wood burned easier than other. Moreover, in practice we can distinguish several fire regime (e.g., crown fires, severe surface fires, and light surface fires) \citep{reichle_fire_1981}. All of this different fires disturbed differently the dry wood. So the dynamic can be modelled in a more complex ways.
