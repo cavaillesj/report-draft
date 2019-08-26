@@ -1032,36 +1032,47 @@ Also, when $AB$ is lower, we have again the same three sub-cases than for the \t
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=3.9cm]{equivalent_low_never_1.png}
-\includegraphics[width=3.9cm]{equivalent_low_never_2.png}
-\includegraphics[width=3.9cm]{equivalent_low_never_3.png}
-\caption{Time series for different parameter sets corresponding to the case : fluctuating - unlikely collapse}
-%\label{fig:universe}
-\end{figure}
-
-
-%\paragraph{}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=3.9cm]{equivalent_low_always_1.png}
-\includegraphics[width=3.9cm]{equivalent_low_always_2.png}
-\includegraphics[width=3.9cm]{equivalent_low_always_3.png}
-\caption{Time series for different parameter sets corresponding to the case : fluctuating - possible collapse}
-%\label{fig:universe}
-\end{figure}
-
-
-
-%\paragraph{}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=6cm]{equivalent_low_between_1.png}
+\includegraphics[width=6cm]{equivalent_low_never_2.png}
+\includegraphics[width=6cm]{equivalent_low_never_3.png} \\
 \includegraphics[width=6cm]{equivalent_low_between_2.png}
-\caption{Time series for different parameter sets corresponding to the case : fluctuating - inevitable}
+\caption{From left to right : fluctuating - unlikely collapse, fluctuating - possible collapse and fluctuating - inevitable}
 %\label{fig:universe}
 \end{figure}
+
+
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=3.9cm]{equivalent_low_never_1.png}
+%\includegraphics[width=3.9cm]{equivalent_low_never_2.png}
+%\includegraphics[width=3.9cm]{equivalent_low_never_3.png}
+%\caption{Time series for different parameter sets corresponding to the case : fluctuating - unlikely collapse}
+%\label{fig:universe}
+%\end{figure}
+
+
+%\paragraph{}
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=3.9cm]{equivalent_low_always_1.png}
+%\includegraphics[width=3.9cm]{equivalent_low_always_2.png}
+%\includegraphics[width=3.9cm]{equivalent_low_always_3.png}
+%\caption{Time series for different parameter sets corresponding to the case : fluctuating - possible collapse}
+%\label{fig:universe}
+%\end{figure}
+
+
+
+%\paragraph{}
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=6cm]{equivalent_low_between_1.png}
+%\includegraphics[width=6cm]{equivalent_low_between_2.png}
+%\caption{Time series for different parameter sets corresponding to the case : fluctuating - inevitable}
+%\label{fig:universe}
+%\end{figure}
 
 
 
@@ -1077,10 +1088,10 @@ One of our major focus is to study the impact of frequency over variability and 
 \paragraph{}
 We begin with the dynamical case called \textit{accumulate - unlikely collapse}. The red font is used to mark the dynamical case \textit{accumulate} the yellow correspond to \textit{fluctuation}. We could see that the variability increase whit the frequency, however, collapse probability remains null. We can remark that the estimation (the continuous line) work reasonably well. 
 
-\todo{do again the plot with good name, and ...}
+
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=10cm]{results/return_never_2.png}
+\includegraphics[width=9cm]{results/measures_acc_unlikely.png}
 \end{center}
 \caption{\label{fig:temp}Measures evolution over frequency for the dynamical cases : accumulate - unlikely collapse}
 \end{figure}
@@ -1092,7 +1103,7 @@ Here, the collapse probability is still null. The is firstly increasing, followi
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=10cm]{results/equivalent_never.png} \\
+\includegraphics[width=9cm]{results/measures_fluctu_unlikely.png} \\
 \end{center}
 \caption{\label{fig:temp}Measures evolution over frequency for the dynamical cases : fluctuation - unlikely collapse}
 \end{figure}
@@ -1103,7 +1114,7 @@ When frequency is high enough, $AB$ take high value, and the fuel is constrain t
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=10cm]{results/fuel_low.png}
+\includegraphics[width=9cm]{results/measures_depletion.png}
 \end{center}
 \caption{\label{fig:temp}Measures evolution over frequency for the dynamical cases : depletion}
 \end{figure}
@@ -1116,8 +1127,8 @@ To clarify, even in the dynamical case \textit{accumulation - inevitable collaps
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=6cm]{results/return_moderate_2.png}
-\includegraphics[width=6cm]{results/return_always_2.png} 
+\includegraphics[width=6cm]{results/measures_acc_possible.png}
+\includegraphics[width=6cm]{results/measures_acc_inevitable.png} 
 \end{center}
 \caption{\label{fig:temp}Measures evolution over frequency for the dynamical cases : Left \textit{accumulation - possible collapse}, Right \textit{accumulation - inevitable collapse}}
 \end{figure}
@@ -1131,7 +1142,7 @@ For the two dynamical case \textit{fluctuation - possible collapse} and \textit{
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=6cm]{results/equivalent_moderate_2.png} \includegraphics[width=6cm]{results/equivalent_always.png}
+\includegraphics[width=6cm]{results/measures_fluctuation_possible.png} \includegraphics[width=6cm]{results/measures_fluctuation_inevitable.png}
 \end{center}
 \caption{\label{fig:temp}Measures evolution over frequency for the dynamical cases : Left \textit{fluctuation - possible collapse}, Right \textit{fluctuation - inevitable collapse}}
 \end{figure}
@@ -1189,25 +1200,33 @@ To do this, we compute the probability to change the dynamical case if the frequ
 Now, the frequency ranged used is consequently higher. We focus on the general effect of changing frequency to the two measures. We could check below that for the extremes (low value of frequency and high value of frequency) both measures are very small, and they are higher for an intermediate value of frequency.
 
 
+
+%Depending on the parameter set choose, the dynamics is different and therefore, the variability and the collapse probability do not react similarly. On the first one, variability and cp first increase together and after decrease (the decreasing part is not always present). On the second one, the two measure are also increasing and decreasing but not in the same time, more surprisingly cp increase before variability. However, in the last class presented, the loop is clockwise.
+
+
 \paragraph{}
-Depending on the parameter set choose, the dynamics is different and therefore, the variability and the collapse probability do not react similarly. On the first one, variability and cp first increase together and after decrease (the decreasing part is not always present). On the second one, the two measure are also increasing and decreasing but not in the same time, more surprisingly cp increase before variability. However, in the last class presented, the loop is clockwise.
-\todo{another plot, with a counter clockwise more circular ?}
+Depending on the parameter set choose, the dynamics is different and therefore, the variability and the collapse probability do not react similarly. On the first one, collapse probability and variability increase together, after variability remain constant but collapse probability decrease. On the second one, the two measure are increasing and decreasing but not in the same time, more surprisingly cp increase before variability. With the third example, variability and cp first increase together and after decrease (the decreasing part is not always present). In the last illustration presented, the loop is clockwise, which is a uncommon.
+f
+
 
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=10cm, height = 4.2cm]{case_linear.png}
-\includegraphics[width=10cm, height = 4.2cm]{case_triangular.png}
-\includegraphics[width=10cm, height = 4.2cm]{case_clockwise.png}
+\includegraphics[width=6cm]{case_circle.png}
+\includegraphics[width=6cm]{case_triangular.png}
+\includegraphics[width=6cm]{case_linear.png}
+\includegraphics[width=6cm]{case_clockwise.png}
+%\includegraphics[width=10cm, height = 4.2cm]{case_linear.png}
+%\includegraphics[width=10cm, height = 4.2cm]{case_triangular.png}
+%\includegraphics[width=10cm, height = 4.2cm]{case_clockwise.png}
 \end{center}
-\caption{\label{fig:temp}From left to right : Class linear, counter-clockwise and clockwise} % or category or type, kinds
+\caption{\label{fig:temp}Different examples of the relationship of variability and collapse probability} % or category or type, kinds
 \end{figure}
 
 
 
-\todo{plot in results the graph with var and cp increasing with same fire and same time, to validate the results}
-\todo{precise that counter clock est assez rare}
-\todo{4 ième boucle si nécéssaire}
+%\todo{plot in results the graph with var and cp increasing with same fire and same time, to validate the results}
+%\todo{precise that counter clock est assez rare}
 
 
 \newpage
