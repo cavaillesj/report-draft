@@ -1202,6 +1202,7 @@ Depending on the parameter set choose, the dynamics is different and therefore, 
 %\includegraphics[width=10cm, height = 4.2cm]{case_clockwise.png}
 \end{center}
 \caption{\label{fig:temp}Different examples of the relationship of variability and collapse probability} % or category or type, kinds
+\label{fig_loop}
 \end{figure}
 
 
@@ -1318,11 +1319,11 @@ We have seen that us is possible to distinguish several types of dynamics. For e
 
 
 
-
-
 \subsection{Limitation}
 
 \paragraph{}
+The present study aim at reveal different point (e.g. \textit{variability} can not always be used to predict a collapse) however it will need  more improvements to be somewhat predictive.
+
 \label{discussion_frequency_ass}
 We assume that the frequency of the fire is independent of the density biomass. It can be argued that fuels have an influence on both severity and frequency  of fires \citep{schoennagel_interaction_2004}. However, adding this feedback (from $W$ to the frequency) will surely tends to decrease the density biomass of $W$ (because, when $W$ is higher, the frequency is higher too, and so the dynamics keep a low value of $W$). In other word, this should have the \textit{depletion} scenarios more often.
 
@@ -1338,11 +1339,32 @@ Less relevant, we only consider density biomass. However, the spatial distributi
 \subsection{Collapse indicators}
 
 \paragraph{}
-One of the most used indicators of critical change (a sudden change from one state to another one) is \textit{variability} \citep{brock_variance_2006, carpenter2006rising, scheffer2015generic, dakos_robustness_2012, biggs_turning_2009}. In ecology it is useful to be able to anticipated an abrupt change in order to prevent it or at least to decrease it. They are others indicators of critical change \cite{scheffer_generic_2015} and \cite{dakos_methods_2012} give a review of the different early warnings signal. 
+Mainly in ecology, and in others applied science, an essential care is given to detect crucial shift. It is useful to be able to anticipated an abrupt change in order to prevent it or at least to decrease it. One of the most used indicators of critical change (a sudden change from one state to another one) is \textit{variability} \citep{brock_variance_2006, carpenter2006rising, scheffer2015generic, dakos_robustness_2012, biggs_turning_2009}. They are others indicators of critical change :  \cite{scheffer_generic_2015} and \cite{dakos_methods_2012} give a review of the different early warnings signal. If a lot of different methods have been established, most of them are based on at least one of the following phenomena : critical slowing down and flickering.
 
-In the present model, the critical change is the collapse, it can be noticed that this one is irreversible. Methods using \textit{flickering} (the repeated change of state) could not be used directly \citep{carr_modeling_2012, wang_flickering_2012, dakos_flickering_2013}. The other phenomena mainly used to predict critical change is \textit{critical slowing down} : slowdown of the dynamics due to the proximity with the critical change \citep{dakos_critical_2014, dakos_slowing_nodate, scheffer_anticipating_2012}. A lot of study used this principles to develop early warning signal in different field such as psychology \citep{van_de_leemput_critical_2014} climate change \citep{lenton_early_2012} ecology \citep{chisholm_critical_2009, gandhi_critical_1998} engineering \citep{ren_early_2015} or finance \citep{diks_critical_2018}.
+\textit{critical slowing down} use the slowdown of the dynamics due to the proximity with the critical change \citep{dakos_critical_2014, dakos_slowing_nodate, scheffer_anticipating_2012}. A lot of study used this principles to develop early warning signal in different field such as psychology \citep{van_de_leemput_critical_2014} climate change \citep{lenton_early_2012} ecology \citep{chisholm_critical_2009, gandhi_critical_1998} engineering \citep{ren_early_2015} or finance \citep{diks_critical_2018}. Critical slowing down are used to detect when a system approach a tipping point, the flatness of the basin of attraction change, and by assuming that the perturbations are of the same amplitude, the variance change. The following figures (from \cite{lenton_early_2012}) show how variability increase when the basin of attraction change.
 
-Here, we show that variability is sometimes could sometimes be good indicators of the collapse of the system. For example for the two dynamical cases \textit{accumulation - possible collapse} and \textit{accumulation - inevitable collapse}. However, for the dynamical case \textit{accumulate - unlikely collapse}, variability increase without an increasing of the collapse probability. More generally, figures 32 \todo{} show that for different set of parameters is is possible to have different connection between the two measures. Especially, one measures could increase (respectively decrease) before the others increase (respectively decrease). Visually, the loop turn in two different directions (most of the time the direction is counter clock wise) he collapse probability increase and reach a peak before the variability.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=12cm]{slowing_down.png}
+\end{center}
+\caption{\label{fig:temp}Heuristic illustration of critical slowing down could not be used directly. from \cite{lenton_early_2012}}
+\end{figure}
+
+Flickering is based on the idea that closed to a tipping point, the dynamics will change from one basins of attraction to another one. This affect the distributions of the state of the dynamics \citep{carr_modeling_2012, wang_flickering_2012, dakos_flickering_2013, scheffer_anticipating_2012}. Figures \ref{flickering} give an illustration of this phenomena.
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=10cm]{flickering.png}
+\end{center}
+\caption{\label{fig:temp}Flickering between alternative states in highly stochastic systems \citep{scheffer_anticipating_2012}}
+\label{flickering}
+\end{figure}
+
+\paragraph{}
+In our model, we have always a bistable system, and no bifurcation, the set of methods using critical slowing down or flickering could not be used directly. Another argument against the used of flickering is that in our model the critical change is the collapse, it can be noticed that this one is irreversible. The system could not oscillate between two state (change to collapse at most).
+
+Here, we show that variability is sometimes could sometimes be good indicators of the collapse of the system. For example for the two dynamical cases \textit{accumulation - possible collapse} and \textit{accumulation - inevitable collapse}. However, for the dynamical case \textit{accumulate - unlikely collapse}, variability increase without an increasing of the collapse probability. More generally, figures \ref{fig_loop} show that for different set of parameters is is possible to have different connection between the two measures. Especially, one measures could increase (respectively decrease) before the others increase (respectively decrease). Visually, the loop turn in two different directions (most of the time the direction is counter clock wise) he collapse probability increase and reach a peak before the variability.
 
 
 
@@ -1361,6 +1383,11 @@ Fuel treatment is the major concern to prevent large wildfire \citep{liu_studyin
 Prescribed burning could be used jointly with thinning, one advantage is to treat both canopy and surface fuels \citep{kalies_tamm_2016, agee_basic_2005}. Thinning treatments were aimed at removing few trees to increase the growth, health and value of the other trees. It have been shown that this strategy is efficient \citep{hurteau2008carbon} and could also better resists to drought \citep{d2013effects} and pests \citep{waring2005silvicultural}. In present study, we could see that decreasing the value of the parameter $d$ decreasing significantly the risk to collapse.
 
 
+
+
+\subsection{ mathematical/modelling aspects}
+\todo{variability bias}
+\todo{use and plot "same fire"}
 
 
 \subsection{Last words}
