@@ -535,6 +535,7 @@ A similar measure to variability is the coefficient of variability. Defined as t
 
 
 \paragraph{}
+\label{same_fire}
 Different technique have been used to minimise the bias to variability estimation, due to collapse. However the bias persist \citep{seely2004complex}, that is why instead of doing a lot of simulation and average the effect, we propose to used only one simulation (only one fire). One problem is that when we change the frequency, we need to choose between used the same time scale, and so not take the same fire (it will truncated) or used the same fire and so no have the same time scale. Because both are relevant, both are computed. 
 
 
@@ -1336,6 +1337,31 @@ Less relevant, we only consider density biomass. However, the spatial distributi
 %\todo{talk again about the bias from cp to variability ??} 
 
 
+
+\subsection{ mathematical/modelling aspects}
+
+
+
+
+
+
+\paragraph{}
+Because the collapse of the system affect the variability of this system, it is difficult to have robust computation of the variability. Construct an unbiased computation of variability do not seem to be possible. In others words, because a possible collapse can occur at different time it is difficult to have a robust computation of the variability.
+
+It could be argued that the dissimilarity between variability and collapse probability is an artefact of this bias. Especially, the peak of variability could arise from the collapse events. To validate the conformity of the results, we use a same fire randomisation for different parameter (presented in \hyperref[same_fire]{methods}). We use the same time scale to compute variability (before the time of the first collapse). 
+
+We could check below that we have a change of the variability computation (for two ways to compute it). The peak of variability do not seem to be an artefact of the collapse. Another control is that it is possible to have the peak of variability before the collapse one.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=12cm]{same_fire.png}
+\end{center}
+\caption{\label{fig:temp}Variability evolution with frequency, computed in a robust ways, using the exactly the same fires sequence (\textit{same fire}) or the same first fire and stop the simulation at the same time for all frequency (\textit{same time})}
+\end{figure}
+
+
+
+
 \subsection{Collapse indicators}
 
 \paragraph{}
@@ -1376,21 +1402,19 @@ Here, we show that variability is sometimes could sometimes be good indicators o
 
 \paragraph{}
 %Traditional fire management privileges fire suppression \citep{fernandes_fire-smart_2013}. 
-However, firefighting have develop unnatural fuel accumulation, and more severe wildfires \citep{schoennagel_interaction_2004}. The present study show that fuel accumulation is the main driver of fire damage. Decreasing the frequency of fire is a misconception called the firefighting trap \citep{collins_forest_2013}.
+Firefighting have develop unnatural fuel accumulation, and more severe wildfires \citep{schoennagel_interaction_2004}. The present study show that fuel accumulation is the main driver of fire damage. Decreasing the frequency of fire is a misconception called the firefighting trap \citep{collins_forest_2013}.
 
 Fuel treatment is the major concern to prevent large wildfire \citep{liu_studying_2013, martinson_performance_nodate}. One of the methods is to used prescribed burning (PB according to \cite{liu_analyzing_2010}). In our methods, we could model this by increasing the fire frequency, at some point it drive us in the \textit{depletion} dynamical cases, and fuel level is too low to permit a collapse. It have been argued by \cite{scholl_fire_2010} that managers have to use multiple burns at short intervals. It could be claimed that multiple prescribed burning would affect ecosystem, however it have been demonstrated that this impact is lower than for wildfires \citep{alcaniz2018effects, fultz2016forest, wiedinmyer2010prescribed}. 
 
-Prescribed burning could be used jointly with thinning, one advantage is to treat both canopy and surface fuels \citep{kalies_tamm_2016, agee_basic_2005}. Thinning treatments were aimed at removing few trees to increase the growth, health and value of the other trees. It have been shown that this strategy is efficient \citep{hurteau2008carbon} and could also better resists to drought \citep{d2013effects} and pests \citep{waring2005silvicultural}. In present study, we could see that decreasing the value of the parameter $d$ decreasing significantly the risk to collapse.
+Prescribed burning could be used jointly with thinning, one advantage is to treat both canopy and surface fuels \citep{kalies_tamm_2016, agee_basic_2005}. Thinning treatments were aimed at removing few trees to increase the growth, health and value of the other trees. It have been shown that this strategy is efficient \citep{hurteau2008carbon} and could also better resists to drought \citep{d2013effects} and pests \citep{waring2005silvicultural}. In present study, we could see that decreasing the value of the parameter $d$ decrease significantly the risk to collapse.
 
 
 
 
-\subsection{ mathematical/modelling aspects}
-\todo{variability bias}
-\todo{use and plot "same fire"}
+%\subsection{Last words}
+%\todo{perhaps}
 
 
-\subsection{Last words}
 
 \todo{}
 
