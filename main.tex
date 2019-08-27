@@ -1206,7 +1206,6 @@ Now, the frequency ranged used is consequently higher. We focus on the general e
 
 \paragraph{}
 Depending on the parameter set choose, the dynamics is different and therefore, the variability and the collapse probability do not react similarly. On the first one, collapse probability and variability increase together, after variability remain constant but collapse probability decrease. On the second one, the two measure are increasing and decreasing but not in the same time, more surprisingly cp increase before variability. With the third example, variability and cp first increase together and after decrease (the decreasing part is not always present). In the last illustration presented, the loop is clockwise, which is a uncommon.
-f
 
 
 
@@ -1265,73 +1264,58 @@ However, if in the case "AB" variability and collapse probability are similar, f
 
 
 
+\paragraph{}
+We now focus on the drought scenarios. This is a current subject (a lot of recent papers about this). This is mainly a consequence of extreme weather as a result of climate changed. 
 
-freq + s \citep{fernandes_fire-smart_2013, fairman_too_2016}
-\citep{}
+It have been shown that drought increase the mortality rate of the forest \citep{bradstock_biogeographic_2010}. In our model, the parameter $m$ increase. However, the main consequences of drought is an increase of the strength of fire, notably because the alive wood is drier. To simulate this, we increase both the parameters $s$, $\alpha$ and $\beta$. Because, the alive wood is drier, we give a more importance to this by increasing the strength two timer quicker than $\alpha$ and $\beta$.
 
-freq decreasing \citep{bergeron_predicting_nodate}
+According to \cite{fernandes_fire-smart_2013, fairman_too_2016} frequency increase with drought, however, \cite{bergeron_predicting_nodate} claimed the opposite. In the present study, we choose to not change frequency.
+
+
+%\paragraph{}
+%It can be \hyperref[drought_increase]{demonstrated} that increasing this $4$ parameters increase the ratio $AB$. Thus, a drought scenarios will tend firstly to increase both variability and the collapse probability and after a decrease of both measures.
 
 \paragraph{}
-f + s \\
-Variations in fire regimes are primarily related to fluctuations in available
-moisture and dominance by either woody or herbaceous plant cover. Fire in
-woodland communities (dry climates) is limited by growth of herbaceous fuels
-(biomass), whereas in forests (wet climates) limitation is by fuel moisture (availability
-to burn) and fire weather. Increasing dryness in woodland communities will
-decrease potential fire frequency, while the opposite applies in forests. In the
-tropics, both forms of limitation are weak due to the annual wet/dry climate. Future
-change may therefore be constrained.\citep{bradstock_biogeographic_2010}
+In the following figures, the consequences of drought for each dynamical cases are presented. It can be remarked that variability could increase without collapse probability (for the dynamical case \textit{Accumulation - unlikely collapse} and \textit{Fluctuation - unlikely collapse}). For other (\textit{Accumulation - possible collapse} and \textit{Accumulation - inevitable collapse}) variability follow not trend, and the collapse probability either have the same behaviour or increase. The two dynamical cases \textit{Fluctuation - possible collapse} and \textit{Fluctuation - inevitable collapse} show an increase of first collapse probability and after variability.
 
+In general, the drought increase the collapse probability, and not always with an increase of the variability.
 
-
-
-\paragraph{}
-We now focus on the drought scenarios. This is a current subject (a lot of recent papers about this). This is mainly a consequence of extreme weather as a result of climate changed. It have been shown that drought increase the frequency, the severity and the size of fire. We link this scenarios to the parameters $f, s, \alpha$ and $\beta$ of our model. Also, because fuel are drier, parameters $\alpha$ and $\beta$ are higher. In brief, the consequences of climate warming is formalised by a higher values of both $f, s, \alpha$ and $\beta$.
-
-
-
-\paragraph{}
-It can be \hyperref[drought_increase]{demonstrated} that increasing this $4$ parameters increase the ratio $AB$. Thus, a drought scenarios will tend firstly to increase both variability and the collapse probability and after a decrease of both measures.
-
-\todo{explain what we see below}
-\paragraph{}
-
-
-\todo{refaire plot sans estimation, en s'arretant aux limites et pas plus loin}
-\todo{ET REFORMULER}
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=6cm]{results/drought/return_never.png}
 \includegraphics[width=6cm]{results/drought/equivalent_never.png}
 \end{center}
-\caption{\label{fig:temp}Left : return to equilibrium / never, Right : equivalent / never}
+\caption{\label{fig:temp}Effect of drought for the dynamical case : \textit{Accumulation - unlikely collapse} at the left and \textit{Fluctuation - unlikely collapse} at the right
+}
+\end{figure}
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=6cm]{results/drought/return_moderate.png}
+\includegraphics[width=6cm]{results/drought/return_always.png}
+\end{center}
+\caption{\label{fig:temp}Effect of drought for the dynamical case : \textit{Accumulation - possible collapse} at the left and \textit{Accumulation - inevitable collapse} at the right}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=6cm]{results/drought/equivalent_moderate.png}
+\includegraphics[width=6cm]{results/drought/equivalent_always.png}
+\end{center}
+\caption{\label{fig:temp}Effect of drought for the dynamical case : \textit{Fluctuation - possible collapse} at the left and \textit{Fluctuation - inevitable collapse} at the right}
 \end{figure}
 
 
 \newpage
 
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=6cm]{results/drought/return_moderate.png}
-\includegraphics[width=6cm]{results/drought/equivalent_moderate.png}
-\end{center}
-\caption{\label{fig:temp}Left : return to equilibrium / moderate, Right : equivalent / moderate}
-\end{figure}
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=6cm]{results/drought/return_always.png}
-\includegraphics[width=6cm]{results/drought/equivalent_always.png}
-\end{center}
-\caption{\label{fig:temp}Left : return to equilibrium / always, Right : equivalent / always}
-\end{figure}
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=9cm]{results/drought/fuel_low.png}
 \end{center}
-\caption{\label{fig:temp}Fuel low}
+\caption{\label{fig:temp}Effect of drought for the dynamical case : \textit{Depletion}}
 \end{figure}
 
 
